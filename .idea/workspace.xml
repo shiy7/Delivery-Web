@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0f93f5be-7983-49b5-aa86-7fcd9dab753a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/laiOffer.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/public/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/public/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/assets/images/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/components/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/components/Login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/components/Main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/components/Register.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/components/TopBar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/serviceWorker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/setupTests.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/styles/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/styles/Login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/styles/Main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/styles/Register.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/styles/TopBar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-end/delivery-web/src/tests/App.test.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1eTl6IdvAFVKM1Qk56evLRb1kXj" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/react/delivery-web/src" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\shiy7\OneDrive\Desktop\Project\Flag Camp\laiOffer\Front-end\delivery-web\src\assets\images" />
+      <recent name="C:\Users\shiy7\OneDrive\Desktop\Project\Flag Camp\laiOffer\Front-end\delivery-web\src\tests" />
+      <recent name="C:\Users\shiy7\OneDrive\Desktop\Project\Flag Camp\laiOffer\Front-end\delivery-web\src\components" />
+      <recent name="C:\Users\shiy7\OneDrive\Desktop\Project\Flag Camp\laiOffer\Front-end\delivery-web\src\styles" />
+      <recent name="C:\Users\shiy7\OneDrive\Desktop\Project\Flag Camp\laiOffer\react\delivery-web\src\tests" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\shiy7\OneDrive\Desktop\Project\Flag Camp\laiOffer\react\delivery-web\src" />
+      <recent name="C:\Users\shiy7\OneDrive\Desktop\Project\Flag Camp\laiOffer\react\delivery-web\src\styles" />
+      <recent name="C:\Users\shiy7\OneDrive\Desktop\Project\Flag Camp\laiOffer\react\delivery-web\src\components" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0f93f5be-7983-49b5-aa86-7fcd9dab753a" name="Default Changelist" comment="" />
+      <created>1594353286164</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594353286164</updated>
+      <workItem from="1594353288756" duration="3327000" />
+      <workItem from="1594356983860" duration="2994000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="725" y="130" key="FileChooserDialogImpl" timestamp="1594354865483">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="725" y="130" key="FileChooserDialogImpl/0.0.1280.680/3840.0.1920.1040@0.0.1280.680" timestamp="1594354865483" />
+  </component>
+</project>
