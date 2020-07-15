@@ -17,8 +17,9 @@ class Main extends React.Component {
     getHome = () => {
         // case 1: already login --> <Home />
         // case 2: not yet --> <log />
-        return this.props.isLoggedIn ?
-            <Home/> : <Redirect to="/login"/>;
+        // return this.props.isLoggedIn ?
+        //     <Home/> : <Redirect to="/login"/>;
+        return <Home/>;
     }
 
 

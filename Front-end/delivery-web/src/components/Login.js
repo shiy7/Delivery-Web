@@ -5,8 +5,11 @@ import { API_ROOT } from '../constants';
 
 class NormalLoginForm extends Component {
     render() {
+
         const { getFieldDecorator } = this.props.form;
         return (
+            <div>
+                <div style={{marginBottom: 10, fontSize:20, fontWeight:"bold"}}>Welcome to login</div>
             <Form onSubmit={this.handleSubmit} className="login-form">
                 <Form.Item>
                     {getFieldDecorator('username', {
@@ -37,6 +40,7 @@ class NormalLoginForm extends Component {
                     {/* link: Provides declarative, accessible navigation around your application.*/}
                 </Form.Item>
             </Form>
+            </div>
         );
     }
 

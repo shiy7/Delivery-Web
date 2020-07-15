@@ -6,7 +6,7 @@
 }
 
 .App-header {
-    background-color: #282c34;
+    background-color: #D3D3D3;
     color: white;
     height: 50px;
 }
@@ -14,9 +14,10 @@
 .App-title {
     float: left;
     padding-top: 15px;
+    padding-left: 10px;
     font-weight: bold;
     font-size: 17px;
-    color: #61dafb;
+    color: black;
 }
 
 .logout {
@@ -25,12 +26,19 @@
     padding-right: 13px;
 }
 
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.home{
+    float: right;
+    padding-top: 13px;
+    padding-right: 13px;
+    color: black;
 }
+
+
+/*@keyframes App-logo-spin {*/
+/*    from {*/
+/*        transform: rotate(0deg);*/
+/*    }*/
+/*    to {*/
+/*        transform: rotate(360deg);*/
+/*    }*/
+/*}*/
