@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
-import { Form, Input, Button ,Select } from 'antd';
+import {Form, Input, Button, Select, message} from 'antd';
+import {API_ROOT} from "../constants";
 class Shipping extends Component {
 
     render() {
-
         const { Option } = Select;
-
         return (
             <div>
                 <p>User information:</p>
-            <Form >
+            <Form onSubmit={this.handleSubmit}>
                 <Form.Item name="username" label="Name" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
@@ -60,12 +59,31 @@ class Shipping extends Component {
                     <Button type="primary" htmlType="submit">
                         Submit
                     </Button>
+                    
                 </Form.Item>
             </Form>
 
             </div>
         );
     }
+
+    handleSubmit = e => {
+        e.preventDefault();
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+
+                // Fetch API provides a JavaScript interface for accessing and manipulating
+                // parts of the HTTP pipeline, such as requests and responses.
+                // It also provides a global fetch() method that provides an easy,
+                // logical way to fetch resources asynchronously across the network.
+
+
+
+
+            }
+        });
+    };
 }
 
 export default Shipping;
