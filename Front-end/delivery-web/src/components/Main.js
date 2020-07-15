@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Register  from './Register';
 import Login from "./Login"
 import Home from './Home';
+import Shipping from './Shipping';
 
 class Main extends React.Component {
     getLogin = () => {
@@ -40,6 +41,7 @@ class Main extends React.Component {
                     <Route path="/login" render={this.getLogin}/>
                     <Route path="/register" component={Register}/>
                     <Route path="/home" render={this.getHome}/>
+                    <Route path="/shipping" component={Shipping}/>
                     {/*
                     default address to login
                     when the address is wrong, it direct to login
