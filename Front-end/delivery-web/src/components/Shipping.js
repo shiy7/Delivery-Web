@@ -59,7 +59,7 @@ class Shipping extends Component {
                     <Button type="primary" htmlType="submit">
                         Submit
                     </Button>
-                    
+
                 </Form.Item>
             </Form>
 
