@@ -47,7 +47,7 @@ class Main extends React.Component {
                     default address to login
                     when the address is wrong, it direct to login
                     */}
-                    <Route render={this.getLogin}/>
+                    <Route render={this.getHome}/>
 
                 </Switch>
             </div>
