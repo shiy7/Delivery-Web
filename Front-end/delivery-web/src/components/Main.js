@@ -38,16 +38,17 @@ class Main extends React.Component {
                      render: 动态
                      component：静态
                      */}
-                    <Route path="/login" render={this.getLogin}/>
+                    {/*<Route path="/login" render={this.getLogin}/>*/}
+                    <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>
-                    <Route path="/home" render={this.getHome}/>
+                    <Route path="/home" component={Home}/>
                     <Route path="/shipping" component={Shipping}/>
                     <Route path="/dashboard" component={DashBoard}/>
                     {/*
                     default address to login
                     when the address is wrong, it direct to login
                     */}
-                    <Route render={this.getHome}/>
+                    <Route component={Home}/>
 
                 </Switch>
             </div>
