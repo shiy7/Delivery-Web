@@ -85,5 +85,5 @@ class Shipping extends Component {
         });
     };
 }
-
-export default Shipping;
+const Ship = Form.create({ name: 'shipping' })(Shipping)
+export default Ship;

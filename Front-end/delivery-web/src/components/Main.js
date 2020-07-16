@@ -4,7 +4,7 @@ import Register  from './Register';
 import Login from "./Login"
 import Home from './Home';
 import Shipping from './Shipping';
-
+import DashBoard from "./DashBoard";
 class Main extends React.Component {
     getLogin = () => {
         // case 1: already login --> <Home></Home>
@@ -42,6 +42,7 @@ class Main extends React.Component {
                     <Route path="/register" component={Register}/>
                     <Route path="/home" render={this.getHome}/>
                     <Route path="/shipping" component={Shipping}/>
+                    <Route path="/dashboard" component={DashBoard}/>
                     {/*
                     default address to login
                     when the address is wrong, it direct to login

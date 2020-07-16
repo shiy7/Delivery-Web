@@ -38,6 +38,8 @@ class RegistrationForm extends React.Component {
         };
 
         return (
+            <div>
+            <div style={{marginBottom: 10, fontSize:20, fontWeight:"bold",marginLeft:100}}>Welcome to Register!</div>
             <Form  {...formItemLayout} onSubmit={this.handleSubmit} className="register">
                 <Form.Item label="Username">
                     {getFieldDecorator('username', {
@@ -77,6 +79,7 @@ class RegistrationForm extends React.Component {
                     <p>I already have an account, go back to <Link to="/login">login</Link></p>
                 </Form.Item>
             </Form>
+            </div>
         );
     }
 
