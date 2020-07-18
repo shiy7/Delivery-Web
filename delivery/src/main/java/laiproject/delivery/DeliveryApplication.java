@@ -28,7 +28,7 @@ public class DeliveryApplication {
     public String recommend() {
 //        final GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyCxiKSD-acPm1syrHWVQtCln60p1QTuoQM");
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyCxiKSD-acPm1syrHWVQtCln60p1QTuoQM")
+                .apiKey("")
                 .build();
         String userAddress = "1031 Irving St, San Francisco, CA 94122";
         String receiverAddress = "450 10th St, San Francisco, CA 94103";
