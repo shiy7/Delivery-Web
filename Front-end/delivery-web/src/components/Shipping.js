@@ -177,34 +177,38 @@ class ShipForm extends Component {
                 // It also provides a global fetch() method that provides an easy,
                 // logical way to fetch resources asynchronously across the network.
 
-                // fetch(`${API_ROOT}/shipping`, {
-                //     method: `POST`,
-                //     body: JSON.stringify({
-                //         username: values.username,
-                //         userphone: values.userphone,
-                //         useraddress: values.useraddress,
-                //     }),
-                // })
-                //     .then(response => {
-                //         // console.log(response);
-                //         if (response.ok) {
-                //             return response.text();
-                //         }
-                //         throw new Error(response.statusText);
-                //     })
-                //     .then((data) => {
-                //         console.log(data);
-                //         message.success('Shipping form created successfully!');
-                //         // back to login page
-                //         console.log(this.props);
-                //         this.props.history.push('/Recommend');
-                //
-                //
-                //     })
-                //     .catch((err) => {
-                //         console.error(err);
-                //         message.error('Shipping form failed to created.');
-                //     });
+                fetch(`${API_ROOT}/shipping`, {
+                    method: `POST`,
+                    body: JSON.stringify({
+                        username: values.username,
+                        userphone: values.userphone,
+                        useraddress: values.useraddress,
+                        rname:values.rname,
+                        rphone: values.rphone,
+                        raddress: values.raddress,
+                        size: values.size,
+                        emergency: values.emergency,
+                        weight: values.weight
+                    }),
+                })
+                    .then(response => {
+                        // console.log(response);
+                        if (response.ok) {
+                            return response.text();
+                        }
+                        throw new Error(response.statusText);
+                    })
+                    .then((data) => {
+                        console.log(data);
+                        message.success('Shipping form created successfully!');
+                        // back to login page
+                        console.log(this.props);
+                        this.props.history.push('/recommend');
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        message.error('Shipping form failed to created.');
+                    });
 
             }
         });
