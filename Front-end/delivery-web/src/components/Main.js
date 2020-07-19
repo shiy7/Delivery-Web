@@ -5,6 +5,9 @@ import Login from "./Login"
 import Home from './Home';
 import Shipping from './Shipping';
 import DashBoard from "./DashBoard";
+import Tracking from "./Tracking";
+import '../styles/Main.css';
+
 class Main extends React.Component {
     getLogin = () => {
         // case 1: already login --> <Home></Home>
@@ -23,12 +26,23 @@ class Main extends React.Component {
         return <Home/>;
     }
 
+    getShipping = () => {
+        return this.props.isLoggedIn ?
+            <Shipping handleLoginSucceed={this.props.handleLoginSucceed}/> : <Redirect to="/login"/>;
+    }
+
+    getDashBoard = () => {
+        return this.props.isLoggedIn ?
+            <DashBoard/> : <Redirect to="/login"/>;
+    }
+
 
     render() {
         return (
             <div className="main">
-                <Switch>
-                    {/*
+                <div className="search">
+                    <Switch>
+                        {/*
                     Route: The Route component is perhaps the most important component in React Router
                      to understand and learn to use well. Its most basic responsibility is to render some UI
                      when a location matches the route’s path.
@@ -38,19 +52,21 @@ class Main extends React.Component {
                      render: 动态
                      component：静态
                      */}
-                    {/*<Route path="/login" render={this.getLogin}/>*/}
-                    <Route path="/login" component={Login}/>
-                    <Route path="/register" component={Register}/>
-                    <Route path="/home" component={Home}/>
-                    <Route path="/shipping" component={Shipping}/>
-                    <Route path="/dashboard" component={DashBoard}/>
-                    {/*
+                        {/*<Route path="/login" render={this.getLogin}/>*/}
+                        <Route path="/login" render={this.getLogin}/>
+                        <Route path="/register" component={Register}/>
+                        <Route path="/home" component={Home}/>
+                        <Route path="/shipping" component={Shipping}/>
+                        <Route path="/dashboard" component={DashBoard}/>
+                        <Route path="/tracking" component={Tracking} />
+                        {/*
                     default address to login
                     when the address is wrong, it direct to login
                     */}
-                    <Route component={Home}/>
+                        <Route component={Home}/>
 
-                </Switch>
+                    </Switch>
+                </div>
             </div>
         );
     }

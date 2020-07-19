@@ -9,7 +9,11 @@ class NormalLoginForm extends Component {
         const { getFieldDecorator } = this.props.form;
         return (
             <div>
-                <div style={{marginBottom: 10, fontSize:20, fontWeight:"bold"}}>Welcome to login!</div>
+                <div style={{marginBottom: 10, fontSize:20, fontWeight:"bold"}}
+                     className="welcomeLog"
+                >
+                    Welcome to login!
+                </div>
             <Form onSubmit={this.handleSubmit} className="login-form">
                 <Form.Item>
                     {getFieldDecorator('username', {

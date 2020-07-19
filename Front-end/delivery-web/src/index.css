@@ -4,7 +4,11 @@
 @import "./styles/Main.css";
 @import "./styles/Register.css";
 @import './styles/Login.css';
-@import "styles/Home.css";
+@import "./styles/Home.css";
+@import "./styles/Tracking.css";
+@import "./styles/Shipping.css";
+@import "./styles/Recommend.css";
+@import "./styles/Dashboard.css";
 
 body {
   margin: 0;
