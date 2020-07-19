@@ -40,134 +40,138 @@ class ShipForm extends Component {
         return (
             <div>
                 <p className="infor">Sender Information</p>
-            <Form  {...formItemLayout} onSubmit={this.handleSubmit}
-                   className="ship"
-            >
-                <Form.Item label="Name">
-                    {getFieldDecorator('username', {
-                        rules: [{ required: true, message: 'Please input sender name!' }],
-                    })(
-                        <Input placeholder="First    Last"/>,
-                    )}
-                </Form.Item>
-                <Form.Item label="Phone" >
-                    {getFieldDecorator('userphone', {
-                        rules: [{ required: true, message: 'Please input sender phone number!' }],
-                    })(<Input />)}
-                </Form.Item>
-                <Form.Item label="Street Address" >
-                    {getFieldDecorator('useraddress', {
-                        rules: [{ required: true, message: 'Please input sender street address!' }],
-                    })(<Input />)}
-                </Form.Item>
+                <Form  {...formItemLayout} onSubmit={this.handleSubmit}
+                       className="ship"
+                >
+                    <Form.Item label="Name">
+                        {getFieldDecorator('username', {
+                            rules: [{ required: true, message: 'Please input sender name!' }],
+                        })(
+                            <Input placeholder="Full Name"/>,
+                        )}
+                    </Form.Item>
+                    <Form.Item label="Phone" >
+                        {getFieldDecorator('userphone', {
+                            rules: [{ required: true, message: 'Please input sender phone number!' }],
+                        })(<Input />)}
+                    </Form.Item>
+                    <Form.Item label="Street Address" >
+                        {getFieldDecorator('useraddress', {
+                            rules: [{ required: true, message: 'Please input sender street address!' }],
+                        })(<Input />)}
+                    </Form.Item>
 
-                <Form.Item label="City / State">
-                    {/*<Form.Item style={{display: "inline-block", width:"50%"}}>*/}
-                    {/*    {getFieldDecorator('usercity', {*/}
-                    {/*                rules: [{ required: true, message: 'Please input your City!' }],*/}
-                    {/*            })(<input placeholder="City" className="ant-input"/>)}*/}
+                    {/*<Form.Item label="City / State">*/}
+
+                    {/*    <Row gutter={8}>*/}
+                    {/*        <Col span={12}>*/}
+                    {/*            <Form.Item >*/}
+                    {/*                {getFieldDecorator('usercity', {*/}
+                    {/*                    rules: [{ required: true, message: 'Please input your City!' }],*/}
+                    {/*                })(<input placeholder="City" className="ant-input"/>)}*/}
+                    {/*            </Form.Item>*/}
+                    {/*        </Col>*/}
+                    {/*        <Col span={12}>*/}
+                    {/*            <Form.Item>*/}
+                    {/*                {getFieldDecorator('userstate', {*/}
+                    {/*                    rules: [{ required: true, message: 'Please input your State!' }],*/}
+                    {/*                })(<input placeholder="State" className="ant-input" />)}*/}
+                    {/*            </Form.Item>*/}
+                    {/*        </Col>*/}
+                    {/*    </Row>*/}
                     {/*</Form.Item>*/}
-                    {/*<Form.Item style={{display: "inline-block", width:"50%"}}>*/}
-                    {/*    {getFieldDecorator('userstate', {*/}
-                    {/*    rules: [{ required: true, message: 'Please input your City!' }],*/}
-                    {/*})(<input placeholder="State" className="ant-input"/>)}*/}
-                    {/*</Form.Item>*/}
 
-                    <Row gutter={8}>
-                        <Col span={12}>
-                            <Form.Item >
-                                {getFieldDecorator('usercity', {
-                                    rules: [{ required: true, message: 'Please input your City!' }],
-                                })(<input placeholder="City" className="ant-input"/>)}
-                            </Form.Item>
-                        </Col>
-                        <Col span={12}>
-                            <Form.Item>
-                                {getFieldDecorator('userstate', {
-                                    rules: [{ required: true, message: 'Please input your State!' }],
-                                })(<input placeholder="State" className="ant-input" />)}
-                            </Form.Item>
-                        </Col>
-                    </Row>
-                </Form.Item>
+                    <p className="infor">Receiver Information</p>
+                    <Form.Item label="Name">
+                        {getFieldDecorator('rname', {
+                            rules: [{ required: true, message: 'Please input receiver name!' }],
+                        })(<Input />)}
+                    </Form.Item>
+                    <Form.Item name="rphone" label="Phone" rules={[{ required: true }]}>
+                        {getFieldDecorator('rphone', {
+                            rules: [{ required: true, message: 'Please input receiver phone number!' }],
+                        })(<Input />)}
+                    </Form.Item>
+                    <Form.Item name="raddress" label="Address" rules={[{ required: true }]}>
+                        {getFieldDecorator('raddress', {
+                            rules: [{ required: true, message: 'Please input receiver street address!' }],
+                        })(<Input />)}
+                    </Form.Item>
+                    <p className="infor">Package Information</p>
+                    <Form.Item name="size" label="Size" rules={[{ required: true }]}>
+                        {getFieldDecorator('size', {
+                            rules: [{ required: true, message: 'Please choose package size!' }],
+                        })(
+                            <Select
+                                placeholder="Select a option and change input text above"
+                                // onChange={onGenderChange}
+                                allowClear
+                            >
+                                <Option value="small">small</Option>
+                                <Option value="medium">medium</Option>
+                                <Option value="large">large</Option>
+                            </Select>
+                        )}
+                    </Form.Item>
+                    <Form.Item name="weight" label="Weight" rules={[{ required: true }]}>
+                        {getFieldDecorator('weight', {
+                            rules: [{ required: true, message: 'Please input package weight!' }],
+                        })(<Input addonAfter={'lb'}/>)}
+                    </Form.Item>
+                    <Form.Item name="emergency" label="Emergency" rules={[{ required: true }]}>
+                        {getFieldDecorator('emergency', {
+                            rules: [{ required: true, message: 'Please choose package size!' }],
+                        })(
+                            <Select
+                                placeholder="Select a option and change input text above"
+                                // onChange={onGenderChange}
+                                allowClear
+                            >
+                                <Option value="urgent">urgent</Option>
+                                <Option value="slow">not urgent</Option>
 
-                <p className="infor">Receiver Information</p>
-                <Form.Item label="Name">
-                    {getFieldDecorator('rname', {
-                        rules: [{ required: true, message: 'Please input receiver name!' }],
-                    })(<Input />)}
-                </Form.Item>
-                <Form.Item name="rphone" label="Phone" rules={[{ required: true }]}>
-                    {getFieldDecorator('rphone', {
-                        rules: [{ required: true, message: 'Please input receiver phone number!' }],
-                    })(<Input />)}
-                </Form.Item>
-                <Form.Item name="raddress" label="Address" rules={[{ required: true }]}>
-                    {getFieldDecorator('raddress', {
-                        rules: [{ required: true, message: 'Please input receiver street address!' }],
-                    })(<Input />)}
-                </Form.Item>
-                <p className="infor">Package Information</p>
-                <Form.Item name="size" label="Size" rules={[{ required: true }]}>
-                    {getFieldDecorator('size', {
-                        rules: [{ required: true, message: 'Please choose package size!' }],
-                    })(
-                    <Select
-                        placeholder="Select a option and change input text above"
-                        // onChange={onGenderChange}
-                        allowClear
-                    >
-                        <Option value="small">small</Option>
-                        <Option value="medium">medium</Option>
-                        <Option value="large">large</Option>
-                    </Select>
-                    )}
-                </Form.Item>
-                <Form.Item name="weight" label="Weight" rules={[{ required: true }]}>
-                    {getFieldDecorator('weight', {
-                        rules: [{ required: true, message: 'Please input package weight!' }],
-                    })(<Input addonAfter={'lb'}/>)}
-                </Form.Item>
-                <Form.Item name="emergency" label="Emergency" rules={[{ required: true }]}>
-                    {getFieldDecorator('emergency', {
-                        rules: [{ required: true, message: 'Please choose package size!' }],
-                    })(
-                    <Select
-                        placeholder="Select a option and change input text above"
-                        // onChange={onGenderChange}
-                        allowClear
-                    >
-                        <Option value="urgent">urgent</Option>
-                        <Option value="slow">not urgent</Option>
+                            </Select>
+                        )}
+                    </Form.Item>
+                    <Form.Item {...tailFormItemLayout}>
 
-                    </Select>
-                    )}
-                </Form.Item>
-                <Form.Item {...tailFormItemLayout}>
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
 
-                    <Button type="primary" htmlType="submit">
-                        Submit
-                    </Button>
+                    </Form.Item>
+                </Form>
 
-                </Form.Item>
-            </Form>
-
-
+            </div>
         );
     }
-    // setTemperature: function(e) {
-    //     // e.target.value is the text from our input
-    //     this.setState({username : event.target.value})
-    // }
-    // handleInputChange = e =>{
-    //     this.setState({username : event.target.value})
-    // }
+
     handleSubmit = e => {
         e.preventDefault();
-        // console.log('username is '+ state.usernamename);
+
+        function generateTrackingNumber(number) {
+            let i;
+            let result = '';
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+            const digits = '0123456789';
+            const charactersLength = characters.length;
+            for (i = 0; i < 4; i++){
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            for (i = 0; i < number; i++ ) {
+
+                result += digits.charAt(Math.floor(Math.random() * 10));
+            }
+            return result;
+        }
+
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values.username);
+                console.log('Received values of form: ', values);
+                console.log('user name: ', values.username);
+                console.log('user phone ', values.userphone);
+                console.log('user address: ', values.useraddress);
+                console.log('tracking number',generateTrackingNumber(12));
 
                 // Fetch API provides a JavaScript interface for accessing and manipulating
                 // parts of the HTTP pipeline, such as requests and responses.
