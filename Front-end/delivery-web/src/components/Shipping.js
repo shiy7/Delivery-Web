@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Form, Input, Button, Select, message, Row, Col} from 'antd';
 import {API_ROOT} from "../constants";
-
 class ShipForm extends Component {
 
     state = {
@@ -172,7 +171,7 @@ class ShipForm extends Component {
                 console.log('user phone ', values.userphone);
                 console.log('user address: ', values.useraddress);
                 console.log('tracking number',generateTrackingNumber(12));
-
+                alert("Success!")
                 // Fetch API provides a JavaScript interface for accessing and manipulating
                 // parts of the HTTP pipeline, such as requests and responses.
                 // It also provides a global fetch() method that provides an easy,
