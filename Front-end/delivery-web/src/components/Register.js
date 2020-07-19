@@ -39,8 +39,15 @@ class RegistrationForm extends React.Component {
 
         return (
             <div>
-            <div style={{marginBottom: 10, fontSize:20, fontWeight:"bold",marginLeft:100}}>Welcome to Register!</div>
-            <Form  {...formItemLayout} onSubmit={this.handleSubmit} className="register">
+            <div style={{marginBottom: 10, fontSize:20, fontWeight:"bold",marginLeft:100}}
+                 className= "welcomeReg"
+            >
+                Welcome to Register!
+            </div>
+            <Form  {...formItemLayout}
+                   onSubmit={this.handleSubmit}
+                   className="register"
+            >
                 <Form.Item label="Username">
                     {getFieldDecorator('username', {
                         rules: [{ required: true, message: 'Please input your username!' }],
@@ -72,6 +79,38 @@ class RegistrationForm extends React.Component {
                         ],
                     })(<Input.Password onBlur={this.handleConfirmBlur} />)}
                 </Form.Item>
+                <Form.Item
+                    label="Name"
+                    rules={[{ required: true, message: 'Please input your Name!' }]}
+                >
+                    <Input placeholder="First" style={{ width: '50%' }} />
+                    <Input placeholder="Last" style={{width: '50%'}} />
+                </Form.Item>
+                <Form.Item
+                    name="phone"
+                    label="Phone Number"
+                    rules={[{ required: true, message: 'Please input your phone number!' }]}
+                >
+                    <Input style={{ width: '100%' }} />
+                </Form.Item>
+                <Form.Item
+                    label="Address"
+                    rules={[{ required: true, message: 'Please input your home address!' }]}
+                >
+                    <Input style={{ width: '100%' }}
+                            placeholder="Street Address"
+                    />
+                    <Input style={{width:'50%'}}
+                           placeholder="City"
+                    />
+                    <Input style={{width:'50%'}}
+                            placeholder="State / Province"
+                    />
+                    <Input style={{width: '50%', float:'left'}}
+                           placeholder= "Zip Code"
+                    />
+                </Form.Item>
+
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">
                         Register

@@ -33,6 +33,14 @@
     color: black;
 }
 
+.login{
+    float: right;
+    padding-top: 13px;
+    padding-right: 13px;
+    color: black;
+}
+
+
 
 /*@keyframes App-logo-spin {*/
 /*    from {*/

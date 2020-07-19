@@ -8,8 +8,36 @@
     width: 220px;
 }
 
-.main{
+.background {
     /*min-height:1000px;*/
     /*background-image: url(../assets/images/bgd.jpg);*/
-    background-repeat: no-repeat;
+    /*background-repeat: no-repeat;*/
+
+    background-image: url(../assets/images/bgd.jpg);
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    background-size: cover;
+    background-position: center;
 }
+
+.welcome {
+    font-size: 25px;
+    font-weight: bold;
+    font-family:sans-serif;
+    color: #ffffff;
+    background-color: gray;
+    letter-spacing: 10px;
+    text-align: center;
+    padding: 10px;
+}
+
+
+
+.track {
+    margin-top: 10px;
+    background-color: #1890ff;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
