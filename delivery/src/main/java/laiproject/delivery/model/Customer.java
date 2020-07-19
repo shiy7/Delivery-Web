@@ -12,8 +12,13 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String customerPhone;
+    public Customer() {}
 
-
+    public Customer (String firstName, String lastName, String customerPhone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.customerPhone = customerPhone;
+    }
 
     public String getCustomerPhone() {
         return customerPhone;

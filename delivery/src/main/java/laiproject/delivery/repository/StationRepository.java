@@ -1,4 +1,4 @@
-package laiproject.delivery.CRUD;
+package laiproject.delivery.repository;
 
 import laiproject.delivery.model.Customer;
 import laiproject.delivery.model.Station;

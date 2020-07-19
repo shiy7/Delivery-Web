@@ -20,12 +20,14 @@ public class Robot {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "station_id")
     private Station station;
+    public Robot() {}
 
     public Robot(int max_capacity) {
         this.max_capacity = max_capacity;
         this.isAvailable = true;
         this.robot_range = 100;
         this.address = "xxxxx";
+        this.station = null;
     }
 
     public int getRobotId() {

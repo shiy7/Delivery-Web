@@ -1,4 +1,4 @@
-package laiproject.delivery.CRUD;
+package laiproject.delivery.repository;
 
 import laiproject.delivery.model.Robot;
 import org.springframework.data.repository.CrudRepository;

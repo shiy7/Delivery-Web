@@ -1,6 +1,6 @@
 package laiproject.delivery.controller;
 
-import laiproject.delivery.CRUD.StationRepository;
+import laiproject.delivery.repository.StationRepository;
 import laiproject.delivery.model.Customer;
 import laiproject.delivery.model.Station;
 import org.springframework.beans.factory.annotation.Autowired;
