@@ -1,14 +1,24 @@
 import React, {Component} from 'react';
-import {Form, Input, Button, Select, message} from 'antd';
+import {Form, Input, Button, Select} from 'antd';
+import { useState } from 'react';
 import {API_ROOT} from "../constants";
 class Shipping extends Component {
+    state = {
+        username : ''
+
+    }
 
     render() {
         const { Option } = Select;
+        // const onFinish = values => {
+        //     console.log('Received values of form: ', values);
+        // };
+
         return (
-            <div>
-                <p>User information:</p>
-            <Form onSubmit={this.handleSubmit}>
+
+                // <p>User information:</p>
+            <Form onSubmit={this.handleSubmit} scrollToFirstError>
+                {/*onSubmit={this.handleSubmit}*/}
                 <Form.Item name="username" label="Name" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
@@ -19,7 +29,8 @@ class Shipping extends Component {
                     <Input />
                 </Form.Item>
                 <p>Receiver information:</p>
-                <Form.Item name="rname" label="Name" rules={[{ required: true }]}>
+                <Form.Item name="rname" label="Name" rules={[{ required: true ,
+                    message: 'Input something!',},]}>
                     <Input />
                 </Form.Item>
                 <Form.Item name="rphone" label="Phone" rules={[{ required: true }]}>
@@ -63,15 +74,22 @@ class Shipping extends Component {
                 </Form.Item>
             </Form>
 
-            </div>
+
         );
     }
-
+    // setTemperature: function(e) {
+    //     // e.target.value is the text from our input
+    //     this.setState({username : event.target.value})
+    // }
+    // handleInputChange = e =>{
+    //     this.setState({username : event.target.value})
+    // }
     handleSubmit = e => {
         e.preventDefault();
+        // console.log('username is '+ state.usernamename);
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                console.log('Received values of form: ', values.username);
 
                 // Fetch API provides a JavaScript interface for accessing and manipulating
                 // parts of the HTTP pipeline, such as requests and responses.
