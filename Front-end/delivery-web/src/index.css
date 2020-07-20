@@ -9,6 +9,7 @@
 @import "./styles/Shipping.css";
 @import "./styles/Recommend.css";
 @import "./styles/Dashboard.css";
+@import "./styles/Processing.css";
 
 body {
   margin: 0;

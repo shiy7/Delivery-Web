@@ -8,6 +8,7 @@ import DashBoard from "./DashBoard";
 import Tracking from "./Tracking";
 import '../styles/Main.css';
 import Recommend from "./Recommend"
+import Processing from "./Processing"
 
 class Main extends React.Component {
     getLogin = () => {
@@ -61,6 +62,7 @@ class Main extends React.Component {
                         <Route path="/dashboard" component={DashBoard}/>
                         <Route path="/tracking" component={Tracking} />
                         <Route path="/recommend" component={Recommend}/>
+                        <Route path="/processing" component={Processing}/>
                         {/*
                     default address to login
                     when the address is wrong, it direct to login
