@@ -176,28 +176,34 @@ class ShipForm extends Component {
                 // parts of the HTTP pipeline, such as requests and responses.
                 // It also provides a global fetch() method that provides an easy,
                 // logical way to fetch resources asynchronously across the network.
-                const url = '/shipping'
-                fetch( url, {
-                    method: 'POST',
-                    body: JSON.stringify({
-                                username: values.username,
-                                userphone: values.userphone,
-                                useraddress: values.useraddress,
-                                rname:values.rname,
-                                rphone: values.rphone,
-                                raddress: values.raddress,
-                                size: values.size,
-                                emergency: values.emergency,
-                                weight: values.weight
-                    }),
-                    headers: {
-                        'Access-Control-Allow-Origin': 'http://localhost:3000',
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
-                })
-                    .then(response => response.text())
-                    .then(data => console.log('data ->',data));
+                localStorage.setItem('userAddress', values.useraddress);
+                localStorage.setItem('raddress', values.raddress);
+                this.props.history.push(`/recommend`);
+                /*
+                // const url = '/recommend'
+                // fetch( url, {
+                //     method: 'POST',
+                //     body: JSON.stringify({
+                //                 username: values.username,
+                //                 userphone: values.userphone,
+                //                 useraddress: values.useraddress,
+                //                 rname:values.rname,
+                //                 rphone: values.rphone,
+                //                 raddress: values.raddress,
+                //                 size: values.size,
+                //                 emergency: values.emergency,
+                //                 weight: values.weight
+                //     }),
+                //     headers: {
+                //         'Access-Control-Allow-Origin': 'http://localhost:3000',
+                //         'Accept': 'application/json',
+                //         'Content-Type': 'application/json'
+                //     }
+                // })
+                //     .then(response => response.text())
+                //     .then(data => console.log('data ->',data));
+                */
+
                 // fetch(`${API_ROOT}/shipping`, {
                 //     method: `POST`,
                 //     body: JSON.stringify({
