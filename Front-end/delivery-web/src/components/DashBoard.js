@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import {Button} from "antd";
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import Profile from "./Profile"
+import OrderHistory from "./OrderHistory"
+import {Route, Redirect, Switch} from "react-router-dom"
+import Link from "react-router-dom/Link"
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -30,12 +34,16 @@ class DashBoard extends Component {
                     <div className="logo" />
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1">
-                            <Icon type="user" />
-                            <span>Profile</span>
+                            <Link to='/dashboard/profile'>
+                                <Icon type="user" />
+                                <span>Profile</span>
+                            </Link>
                         </Menu.Item>
                         <Menu.Item key="2">
-                            <Icon type="history" />
-                            <span>Order History</span>
+                            <Link to='/dashboard/orders'>
+                                <Icon type="history" />
+                                <span>Order History</span>
+                            </Link>
                         </Menu.Item>
                     </Menu>
                 </Sider>
@@ -44,7 +52,13 @@ class DashBoard extends Component {
                         <Breadcrumb style={{ margin: '16px 0' }}>
                             <Breadcrumb.Item>Welcome, User</Breadcrumb.Item>
                         </Breadcrumb>
-                        <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div>
+                        <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                            <Switch>
+                                <Route path='/dashboard/profile' component={Profile}/>
+                                <Route path='/dashboard/orders' component={OrderHistory}/>
+                                <Redirect to='/dashboard/profile'/>
+                            </Switch>
+                        </div>
                     </Content>
                 </Layout>
             </Layout>

@@ -3,33 +3,37 @@ import Shipping from "./Shipping"
 
 import { Steps, Button, message } from 'antd';
 import Recommend from "./Recommend"
-import {Route, Switch} from "react-router-dom"
+import {Link, Redirect, Route, Switch, withRouter} from "react-router-dom"
+import Confirm from "./Confirm"
+import Payment from "./Payment"
+import OrderDetail from "./OrderDetail"
+
 const { Step } = Steps;
 
 const steps = [
     {
         title: 'Step 1',
-        content: <Shipping />,
+        content: <Link to='/processing/shipping'/>,
         description: "Please finish shipping information"
     },
     {
         title: 'Step 2',
-        content: <Recommend />,
+        content:  <Link to='/processing/recommend'/>,
         description: 'Please choose one shipping method'
     },
     {
         title: 'Step 3',
-        content: 'third-content',
+        content: <Redirect to='/processing/confirm'/>,
         description: 'Please confirm your order information'
     },
     {
         title: 'Step 4',
-        content: 'Fourth-content',
+        content: <Redirect to='/processing/pay'/>,
         description: 'Please finish payment'
     },
     {
         title: 'Done',
-        content: 'Last-content',
+        content: <Redirect to='/processing/details'/>,
         description: 'Order details'
     }
 ];
@@ -62,9 +66,17 @@ class Processing extends Component {
                         <Step key={item.title} title={item.title} description={item.description} />
                     ))}
                 </Steps>
-                <div className="steps-content">{steps[current].content}</div>
+                <div className="steps-content">
+                    {steps[current].content}
+                    <Switch>
+                        <Route path='/processing/shipping' component={Shipping}/>
+                        <Route path='/processing/recommend' component={Recommend}/>
+                        <Route path='/processing/confirm' component={Confirm}/>
+                        <Route path='/processing/pay' component={Payment}/>
+                        <Route path='/processing/details' component={OrderDetail}/>
+                    </Switch>
+                </div>
                 <div className="steps-action">
-
                     {current < steps.length - 1 && (
                         <Button type="primary" onClick={() => this.next()}>
                             Next
@@ -86,4 +98,4 @@ class Processing extends Component {
     }
 }
 
-export default Processing;
+export default withRouter(Processing);

@@ -9,6 +9,7 @@ import Tracking from "./Tracking";
 import '../styles/Main.css';
 import Recommend from "./Recommend"
 import Processing from "./Processing"
+import Profile from "./Profile"
 
 class Main extends React.Component {
     getLogin = () => {
@@ -35,8 +36,11 @@ class Main extends React.Component {
 
     getDashBoard = () => {
         return this.props.isLoggedIn ?
-            <DashBoard/> : <Redirect to="/login"/>;
+            <DashBoard />: <Redirect to="/login"/>;
     }
+
+
+
 
 
     render() {
