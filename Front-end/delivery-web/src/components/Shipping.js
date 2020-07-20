@@ -166,49 +166,70 @@ class ShipForm extends Component {
 
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
-                console.log('user name: ', values.username);
-                console.log('user phone ', values.userphone);
-                console.log('user address: ', values.useraddress);
-                console.log('tracking number',generateTrackingNumber(12));
+                // console.log('Received values of form: ', values);
+                // console.log('user name: ', values.username);
+                // console.log('user phone ', values.userphone);
+                // console.log('user address: ', values.useraddress);
+                // console.log('tracking number',generateTrackingNumber(12));
                 alert("Success!")
                 // Fetch API provides a JavaScript interface for accessing and manipulating
                 // parts of the HTTP pipeline, such as requests and responses.
                 // It also provides a global fetch() method that provides an easy,
                 // logical way to fetch resources asynchronously across the network.
-
-                fetch(`${API_ROOT}/shipping`, {
-                    method: `POST`,
+                const url = '/shipping'
+                fetch( url, {
+                    method: 'POST',
                     body: JSON.stringify({
-                        username: values.username,
-                        userphone: values.userphone,
-                        useraddress: values.useraddress,
-                        rname:values.rname,
-                        rphone: values.rphone,
-                        raddress: values.raddress,
-                        size: values.size,
-                        emergency: values.emergency,
-                        weight: values.weight
+                                username: values.username,
+                                userphone: values.userphone,
+                                useraddress: values.useraddress,
+                                rname:values.rname,
+                                rphone: values.rphone,
+                                raddress: values.raddress,
+                                size: values.size,
+                                emergency: values.emergency,
+                                weight: values.weight
                     }),
+                    headers: {
+                        'Access-Control-Allow-Origin': 'http://localhost:3000',
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
                 })
-                    .then(response => {
-                        // console.log(response);
-                        if (response.ok) {
-                            return response.text();
-                        }
-                        throw new Error(response.statusText);
-                    })
-                    .then((data) => {
-                        console.log(data);
-                        message.success('Shipping form created successfully!');
-                        // back to login page
-                        console.log(this.props);
-                        this.props.history.push('/recommend');
-                    })
-                    .catch((err) => {
-                        console.error(err);
-                        message.error('Shipping form failed to created.');
-                    });
+                    .then(response => response.text())
+                    .then(data => console.log('data ->',data));
+                // fetch(`${API_ROOT}/shipping`, {
+                //     method: `POST`,
+                //     body: JSON.stringify({
+                //         username: values.username,
+                //         userphone: values.userphone,
+                //         useraddress: values.useraddress,
+                //         rname:values.rname,
+                //         rphone: values.rphone,
+                //         raddress: values.raddress,
+                //         size: values.size,
+                //         emergency: values.emergency,
+                //         weight: values.weight
+                //     }),
+                // })
+                //     .then(response => {
+                //         // console.log(response);
+                //         if (response.ok) {
+                //             return response.text();
+                //         }
+                //         throw new Error(response.statusText);
+                //     })
+                //     .then((data) => {
+                //         console.log(data);
+                //         message.success('Shipping form created successfully!');
+                //         // back to login page
+                //         console.log(this.props);
+                //         this.props.history.push('/recommend');
+                //     })
+                //     .catch((err) => {
+                //         console.error(err);
+                //         message.error('Shipping form failed to created.');
+                //     });
 
             }
         });

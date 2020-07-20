@@ -7,7 +7,10 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.model.DistanceMatrix;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @SpringBootApplication
 @RestController
@@ -43,6 +46,20 @@ public class DeliveryApplication {
         }
 
         return null;
+    }
+
+    @PostMapping(value = "/shipping" ,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String hello(@RequestBody Map params){
+        // need to be a JSON string
+        return "username is " + params.get("username")
+                + "userphone is " + params.get("userphone")
+                + "useraddress is " + params.get("userphone")
+                + "receiver name is " + params.get("rname")
+                + "receiver phone is " + params.get("rphone")
+                + "receiver address is " + params.get("raddress")
+                + "size is " + params.get("size")
+                + "emergency " + params.get("emergency")
+                + "weight " + params.get("weight");
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
