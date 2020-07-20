@@ -8,17 +8,20 @@ class Recommend extends Component {
 
 
     getResponse = ( ) => {
-        const url = '/api/hello';
+        const url = '/recommend';
+        // const url = 'http://localhost:8080/recommend';
         // const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        fetch(url, {
+
+        fetch( url, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': 'http://localhost:3000'
             }
         })
-            .then(response => console.log(response))
+            .then(response => response.json())
             .then(data => console.log('data ->',data));
     }
+
 
 
 
