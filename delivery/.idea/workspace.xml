@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e473918-c60c-4d00-a4df-a960c360493b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Front-end/delivery-web/src/components/Shipping.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-end/delivery-web/src/components/Shipping.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/delivery.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/delivery.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_googlecode_json_simple_json_simple_1_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/laiproject/delivery/DeliveryApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/laiproject/delivery/DeliveryApplication.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,11 +58,23 @@
       <workItem from="1594868191613" duration="1102000" />
       <workItem from="1594876243801" duration="8044000" />
       <workItem from="1595140477108" duration="127000" />
+      <workItem from="1595207874902" duration="630000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1595140590425">
