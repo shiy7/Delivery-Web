@@ -25,10 +25,10 @@ public class DeliveryApplication {
     }
 
     @GetMapping("/recommend")
-    public String recommend() {
+    public DistanceMatrix recommend() {
 //        final GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyCxiKSD-acPm1syrHWVQtCln60p1QTuoQM");
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("")
+                .apiKey("AIzaSyCxiKSD-acPm1syrHWVQtCln60p1QTuoQM")
                 .build();
         String userAddress = "1031 Irving St, San Francisco, CA 94122";
         String receiverAddress = "450 10th St, San Francisco, CA 94103";
@@ -37,7 +37,7 @@ public class DeliveryApplication {
             DistanceMatrixApiRequest req = DistanceMatrixApi.newRequest(context);
             DistanceMatrix trix = req.origins(userAddress).destinations(receiverAddress).await();
 
-            return trix.toString();
+            return trix;
         }catch (ApiException e){
             System.out.println(e.getMessage());
         }catch (Exception e){
