@@ -7,8 +7,10 @@ import java.util.Set;
 @Entity
 public class User{
     @Id
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name = "username", unique=true)
     private String username;
     private String password;
     private boolean enabled;
