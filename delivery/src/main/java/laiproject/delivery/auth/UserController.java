@@ -20,18 +20,11 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
-    @GetMapping("/registration")
-    public String registration(Model model) {
-        model.addAttribute("userForm", new User());
-
-        return "registration";
-    }
 
     @PostMapping("/registration")
-    public String registration(@RequestParam String username, @RequestParam String passwd) {
-        User user = new User(username, passwd);
+    public String registration(@RequestBody User user) {
+        user.setEnabled(true);
         //userValidator.validate(user, bindingResult);
-
         userService.save(user);
 
         securityService.autoLogin(user.getUsername(), user.getPasswordConfirm());
@@ -53,8 +46,10 @@ public class UserController {
         return "login page";
     }
 
-    @GetMapping({"/", "/welcome"})
+    @PostMapping({"/", "/welcome"})
     public String welcome() {
         return "Welcome! This is the main page";
     }
+
+
 }
