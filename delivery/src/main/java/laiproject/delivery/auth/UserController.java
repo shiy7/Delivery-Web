@@ -4,10 +4,14 @@ import laiproject.delivery.Service.SecurityService;
 import laiproject.delivery.Service.UserService;
 import laiproject.delivery.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLIntegrityConstraintViolationException;
 
 @RestController
 public class UserController {
@@ -20,23 +24,19 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
-    @GetMapping("/registration")
-    public String registration(Model model) {
-        model.addAttribute("userForm", new User());
-
-        return "registration";
-    }
 
     @PostMapping("/registration")
-    public String registration(@RequestParam String username, @RequestParam String passwd) {
-        User user = new User(username, passwd);
+    public ResponseEntity registration(@RequestBody User user) {
+        user.setEnabled(true);
         //userValidator.validate(user, bindingResult);
-
-        userService.save(user);
-
-        securityService.autoLogin(user.getUsername(), user.getPasswordConfirm());
-
-        return "registration success";
+        try {
+            userService.save(user);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Failed! Duplicate Username");
+        }
+        //securityService.autoLogin(user.getUsername(), user.getPasswordConfirm());
+        return ResponseEntity.status(HttpStatus.OK).body
+                (String.format("User: %s registration success", user.getUsername()));
     }
 
     @GetMapping("/login")
@@ -57,4 +57,6 @@ public class UserController {
     public String welcome() {
         return "Welcome! This is the main page";
     }
+
+
 }
