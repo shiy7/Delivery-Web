@@ -8,8 +8,20 @@ class ShipForm extends Component {
         autoCompleteResult: [],
     };
 
+    validateInput = (e) => {
+        e.preventDefault();
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                this.props.submittedValues(values);
+                this.props.handleNextButton();
+            }else{
+                console.log(err);
+            }
+        });
+    }
 
     render() {
+        console.log(this.props);
         const { Option } = Select;
         const { getFieldDecorator } = this.props.form;
 
@@ -39,7 +51,7 @@ class ShipForm extends Component {
         return (
             <div>
                 <p className="infor">Sender Information</p>
-                <Form  {...formItemLayout} onSubmit={this.handleSubmit}
+                <Form  {...formItemLayout} onSubmit={this.validateInput}
                        className="ship"
                 >
                     <Form.Item label="Name">
@@ -144,6 +156,7 @@ class ShipForm extends Component {
             </div>
         );
     }
+
 
     handleSubmit = e => {
         e.preventDefault();
