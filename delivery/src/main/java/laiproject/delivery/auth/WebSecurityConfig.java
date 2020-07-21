@@ -24,19 +24,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-//    protected void configure(AuthenticationManagerBuilder auth)
-//            throws Exception {
-//        auth.inMemoryAuthentication().passwordEncoder(org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance()).withUser("user1").password("secret1")
-//                .roles("USER").and().withUser("admin1").password("secret1")
-//                .roles("USER", "ADMIN");
-//    }
-
+    /*
+    Dummy User: bob, Passwd: 1234
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/order","/tracking", "/welcome", "/resources/**", "/registration").permitAll();
-//                .anyRequest().authenticated()
+                .antMatchers("/welcome", "/registration").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .httpBasic();
 //                .and()
 //                .formLogin()
 //                .loginPage("/login")
