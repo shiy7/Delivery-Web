@@ -9,7 +9,9 @@ import Tracking from "./Tracking";
 import '../styles/Main.css';
 import Recommend from "./Recommend"
 import Processing from "./Processing"
-import Profile from "./Profile"
+import Payment from "./Payment"
+
+import OrderDetail from "./OrderDetail"
 
 class Main extends React.Component {
     getLogin = () => {
@@ -67,6 +69,7 @@ class Main extends React.Component {
                         <Route path="/tracking" component={Tracking} />
                         <Route path="/recommend" component={Recommend}/>
                         <Route path="/processing" component={Processing}/>
+                        <Route path='/pay' component={Payment}/>
                         {/*
                     default address to login
                     when the address is wrong, it direct to login
