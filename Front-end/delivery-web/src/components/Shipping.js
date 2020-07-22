@@ -21,7 +21,7 @@ class ShipForm extends Component {
     }
 
     render() {
-        console.log(this.props);
+        // console.log(this.state.useraddress);
         const { Option } = Select;
         const { getFieldDecorator } = this.props.form;
 
@@ -147,7 +147,7 @@ class ShipForm extends Component {
                     <Form.Item {...tailFormItemLayout}>
 
                         <Button type="primary" htmlType="submit">
-                            Submit
+                            Next
                         </Button>
 
                     </Form.Item>

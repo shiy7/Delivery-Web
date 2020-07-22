@@ -20,10 +20,10 @@ class Processing extends Component {
 
     state = {
         current : 0,
-        step: 1,
+        useraddress:'2222 dr str',
         step_one_fields: {
-            username: '',
-            userphone: ''
+            // username:'',
+            // useraddress:''
         },
         step_two_fields: {
             f_one_s_two: '',
@@ -35,21 +35,46 @@ class Processing extends Component {
         },
 
     }
+    prev=()=> {
+        const current = this.state.current - 1;
+        this.setState({ current });
+    }
     next =()=>{
 
         const current = this.state.current + 1;
 
         this.setState({ current });
+        console.log(this.state.useraddress);
     }
 
     getStepOneValue = (values) => {
         const { step_one_fields } = this.state;
-        console.log(values);
-        this.setState({step_one_fields: {
-                ...step_one_fields,
-                ...values
-            }})
+        step1data.step_one_fields.useraddress = values.useraddress;
+        // localStorage.setItem("useraddress",values.useraddress);
+        // localStorage.setItem("raddress",values.raddress);
+        this.setState({useraddress:values.useraddress},()=>this.information = this.state.useraddress);
+
+        // this.setState({step_one_fields: {
+        //         // ...step_one_fields,
+        //         // ...values
+        //     }})
+
     };
+
+    getStepTwoValue = (values) => {
+        console.log(values);
+        // step1data.step_one_fields.useraddress = values.useraddress;
+        // localStorage.setItem("useraddress",values.useraddress);
+        // localStorage.setItem("raddress",values.raddress);
+        this.setState({useraddress:values.useraddress},()=>this.information = this.state.useraddress);
+
+        // this.setState({step_one_fields: {
+        //         // ...step_one_fields,
+        //         // ...values
+        //     }})
+
+    };
+     information = null;
     steps = [
         {
             title: 'Step 1',
@@ -59,22 +84,22 @@ class Processing extends Component {
         },
         {
             title: 'Step 2',
-            content:  <Recommend/>,
+            content:  <Recommend address = {this.information} handlePrevButton={this.prev} handleNextButton={this.next} submittedValues={this.getStepTwoValue}/>,
             description: 'Please choose one shipping method'
         },
         {
             title: 'Step 3',
-            content: <Redirect to='/processing/confirm'/>,
+            content: "content3",
             description: 'Please confirm your order information'
         },
         {
             title: 'Step 4',
-            content: <Redirect to='/processing/pay'/>,
+            content: "content3",
             description: 'Please finish payment'
         },
         {
             title: 'Done',
-            content: <Redirect to='/processing/details'/>,
+            content: "Success! Your delivery robot is on the way!",
             description: 'Order details'
         }
     ];
@@ -90,12 +115,10 @@ class Processing extends Component {
 
 
 
-    prev() {
-        const current = this.state.current - 1;
-        this.setState({ current });
-    }
+
 
     render() {
+        console.log(this.state.useraddress);
         const { current} = this.state;
 
         return (
@@ -116,26 +139,33 @@ class Processing extends Component {
                     {/*    <Route path='/processing/details' component={OrderDetail}/>*/}
                     {/*</Switch>*/}
                 </div>
-                <div className="steps-action">
-                    {current < this.steps.length - 1 && (
-                        <Button type="primary" onClick={() => this.next()}>
-                            Next
-                        </Button>
-                    )}
-                    {current === this.steps.length - 1 && (
-                        <Button type="primary" onClick={() => message.success('Processing complete!')}>
-                            Done
-                        </Button>
-                    )}
-                    {current > 0 && (
-                        <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-                            Previous
-                        </Button>
-                    )}
-                </div>
+                {/*<div className="steps-action">*/}
+                {/*    {current < this.steps.length - 1 && (*/}
+                {/*        <Button type="primary" onClick={() => this.next()}>*/}
+                {/*            Next*/}
+                {/*        </Button>*/}
+                {/*    )}*/}
+                {/*    {current === this.steps.length - 1 && (*/}
+                {/*        <Button type="primary" onClick={() => message.success('Processing complete!')}>*/}
+                {/*            Done*/}
+                {/*        </Button>*/}
+                {/*    )}*/}
+                {/*    {current > 0 && (*/}
+                {/*        <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>*/}
+                {/*            Previous*/}
+                {/*        </Button>*/}
+                {/*    )}*/}
+                {/*</div>*/}
             </div>
         );
     }
 }
 
 export default Processing;
+export const step1data = {
+    step_one_fields: {
+         useraddress:'',
+         raddress:''
+    }
+};
+export const globaldata = React.createContext(step1data.step_one_fields);
