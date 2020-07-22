@@ -10,15 +10,17 @@ class ShipForm extends Component {
 
     validateInput = (e) => {
         e.preventDefault();
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 this.props.submittedValues(values);
-                this.props.handleNextButton();
+                // this.props.handleNextButton();
             }else{
                 console.log(err);
             }
         });
     }
+
+
 
     render() {
         // console.log(this.state.useraddress);
@@ -47,6 +49,8 @@ class ShipForm extends Component {
                 },
             },
         };
+
+
 
         return (
             <div>
@@ -192,6 +196,7 @@ class ShipForm extends Component {
                 localStorage.setItem('userAddress', values.useraddress);
                 localStorage.setItem('raddress', values.raddress);
                 this.props.history.push(`/recommend`);
+
                 /*
                 // const url = '/recommend'
                 // fetch( url, {
