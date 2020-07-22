@@ -16,60 +16,91 @@ const { Step } = Steps;
 
 class Processing extends Component {
 
+
+
+
     state = {
-        current: 0,
-        step: 1,
-        infor: [],
-        step_two_fields: null,
+        current : 0,
+        useraddress:'2222 dr str',
+        step_one_fields: {
+            // username:'',
+            // useraddress:''
+        },
+        step_two_fields: {
+            f_one_s_two: '',
+            f_two_s_two: ''
+        },
         step_final_fields: {
             f_one_s_final: '',
             f_two_s_final: ''
-        }
-    }
+        },
 
-    next =()=>{
-        const current = this.state.current + 1;
+    }
+    prev=()=> {
+        const current = this.state.current - 1;
         this.setState({ current });
     }
+    next =()=>{
 
+        const current = this.state.current + 1;
+
+        this.setState({ current });
+        console.log(this.state.useraddress);
+    }
 
     getStepOneValue = (values) => {
-        console.log(values);
-        this.setState( {
-            infor: values
-        })
+        const { step_one_fields } = this.state;
+        step1data.step_one_fields.useraddress = values.useraddress;
+        // localStorage.setItem("useraddress",values.useraddress);
+        // localStorage.setItem("raddress",values.raddress);
+        this.setState({useraddress:values.useraddress},()=>this.information = this.state.useraddress);
+
+        // this.setState({step_one_fields: {
+        //         // ...step_one_fields,
+        //         // ...values
+        //     }})
+
     };
 
+    getStepTwoValue = (values) => {
+        console.log(values);
+        // step1data.step_one_fields.useraddress = values.useraddress;
+        // localStorage.setItem("useraddress",values.useraddress);
+        // localStorage.setItem("raddress",values.raddress);
+        this.setState({useraddress:values.useraddress},()=>this.information = this.state.useraddress);
 
+        // this.setState({step_one_fields: {
+        //         // ...step_one_fields,
+        //         // ...values
+        //     }})
+
+    };
+     information = null;
     steps = [
         {
             title: 'Step 1',
-            content: <Shipping
-                infor = {this.state.infor}
-                submittedValues={this.getStepOneValue}
-                // handleNextButton={this.next}
-            />,
+            content: <Shipping handleNextButton={this.next} submittedValues={this.getStepOneValue}/>,
             // content:<Shipping/>,
             description: "Please finish shipping information"
         },
         {
             title: 'Step 2',
-            content:  <Recommend infor={this.state.infor}/>,
+            content:  <Recommend address = {this.information} handlePrevButton={this.prev} handleNextButton={this.next} submittedValues={this.getStepTwoValue}/>,
             description: 'Please choose one shipping method'
         },
         {
             title: 'Step 3',
-            content: <Confirm />,
+            content: "content3",
             description: 'Please confirm your order information'
         },
         {
             title: 'Step 4',
-            content: <Payment />,
+            content: "content3",
             description: 'Please finish payment'
         },
         {
             title: 'Done',
-            content: <OrderDetail />,
+            content: "Success! Your delivery robot is on the way!",
             description: 'Order details'
         }
     ];
@@ -85,13 +116,12 @@ class Processing extends Component {
 
 
 
-    prev() {
-        const current = this.state.current - 1;
-        this.setState({ current });
-    }
+
 
     render() {
+        console.log(this.state.useraddress);
         const { current} = this.state;
+
         return (
             <div>
                 <Steps current={current} className="steps-bar">
@@ -102,9 +132,16 @@ class Processing extends Component {
                 </Steps>
                 <div className="steps-content">
                     {this.steps[current].content}
+                    {/*<Switch>*/}
+                    {/*    <Route path='/processing/shipping' component={Shipping}/>*/}
+                    {/*    <Route path='/processing/recommend' component={Recommend}/>*/}
+                    {/*    <Route path='/processing/confirm' component={Confirm}/>*/}
+                    {/*    <Route path='/processing/pay' component={Payment}/>*/}
+                    {/*    <Route path='/processing/details' component={OrderDetail}/>*/}
+                    {/*</Switch>*/}
                 </div>
                 {/*<div className="steps-action">*/}
-                {/*    {current == 0 && (*/}
+                {/*    {current < this.steps.length - 1 && (*/}
                 {/*        <Button type="primary" onClick={() => this.next()}>*/}
                 {/*            Next*/}
                 {/*        </Button>*/}
@@ -126,3 +163,11 @@ class Processing extends Component {
 }
 
 export default Processing;
+export const step1data = {
+    step_one_fields: {
+         useraddress:'',
+         raddress:''
+    }
+};
+export const globaldata = React.createContext(step1data.step_one_fields);
+

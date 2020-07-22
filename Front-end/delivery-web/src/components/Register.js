@@ -79,37 +79,37 @@ class RegistrationForm extends React.Component {
                         ],
                     })(<Input.Password onBlur={this.handleConfirmBlur} />)}
                 </Form.Item>
-                <Form.Item
-                    label="Name"
-                    rules={[{ required: true, message: 'Please input your Name!' }]}
-                >
-                    <Input placeholder="First" style={{ width: '50%' }} />
-                    <Input placeholder="Last" style={{width: '50%'}} />
-                </Form.Item>
-                <Form.Item
-                    name="phone"
-                    label="Phone Number"
-                    rules={[{ required: true, message: 'Please input your phone number!' }]}
-                >
-                    <Input style={{ width: '100%' }} />
-                </Form.Item>
-                <Form.Item
-                    label="Address"
-                    rules={[{ required: true, message: 'Please input your home address!' }]}
-                >
-                    <Input style={{ width: '100%' }}
-                            placeholder="Street Address"
-                    />
-                    <Input style={{width:'50%'}}
-                           placeholder="City"
-                    />
-                    <Input style={{width:'50%'}}
-                            placeholder="State / Province"
-                    />
-                    <Input style={{width: '50%', float:'left'}}
-                           placeholder= "Zip Code"
-                    />
-                </Form.Item>
+                {/*<Form.Item*/}
+                {/*    label="Name"*/}
+                {/*    rules={[{ required: true, message: 'Please input your Name!' }]}*/}
+                {/*>*/}
+                {/*    <Input placeholder="First" style={{ width: '50%' }} />*/}
+                {/*    <Input placeholder="Last" style={{width: '50%'}} />*/}
+                {/*</Form.Item>*/}
+                {/*<Form.Item*/}
+                {/*    name="phone"*/}
+                {/*    label="Phone Number"*/}
+                {/*    rules={[{ required: true, message: 'Please input your phone number!' }]}*/}
+                {/*>*/}
+                {/*    <Input style={{ width: '100%' }} />*/}
+                {/*</Form.Item>*/}
+                {/*<Form.Item*/}
+                {/*    label="Address"*/}
+                {/*    rules={[{ required: true, message: 'Please input your home address!' }]}*/}
+                {/*>*/}
+                {/*    <Input style={{ width: '100%' }}*/}
+                {/*            placeholder="Street Address"*/}
+                {/*    />*/}
+                {/*    <Input style={{width:'50%'}}*/}
+                {/*           placeholder="City"*/}
+                {/*    />*/}
+                {/*    <Input style={{width:'50%'}}*/}
+                {/*            placeholder="State / Province"*/}
+                {/*    />*/}
+                {/*    <Input style={{width: '50%', float:'left'}}*/}
+                {/*           placeholder= "Zip Code"*/}
+                {/*    />*/}
+                {/*</Form.Item>*/}
 
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">
@@ -136,9 +136,14 @@ class RegistrationForm extends React.Component {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-
-                fetch(`${API_ROOT}/signup`,{
+                const url = '/registration'
+                fetch(url,{
                     method: `POST`,
+                    headers: {
+                                'Access-Control-Allow-Origin': 'http://localhost:3000',
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
                     body: JSON.stringify({
                         username: values.username,
                         password: values.password,
