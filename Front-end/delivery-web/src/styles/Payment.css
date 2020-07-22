@@ -1,3 +1,4 @@
+
 .pay {
     margin-top: 80px;
 }
@@ -39,3 +40,10 @@ input {
     transition:border-color .15s;
 
 }
+
+.buttonPay > Button {
+        margin-top: 40px;
+        margin-left: 10px;
+        margin-right: 10px;
+        width:80px;
+    }
