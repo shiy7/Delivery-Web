@@ -12,13 +12,13 @@ class Payment extends Component {
     }
 
     handleInputFocus = (e) => {
-        this.setState({ focus: e.target.name });
+        this.setState({focus: e.target.name});
     }
 
     handleInputChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
 
-        this.setState({ [name]: value });
+        this.setState({[name]: value});
     }
 
     render() {
@@ -34,12 +34,13 @@ class Payment extends Component {
                 <form>
                     <div>
                         <input className="cardNumber"
-                            type="tel"
-                            name="number"
-                            placeholder="Card Number"
-                            onChange={this.handleInputChange}
-                            onFocus={this.handleInputFocus}
+                               type="tel"
+                               name="number"
+                               placeholder="Card Number"
+                               onChange={this.handleInputChange}
+                               onFocus={this.handleInputFocus}
                         />
+
                     </div>
                     <div>
                         <input className="cardName"
@@ -52,7 +53,7 @@ class Payment extends Component {
                     </div>
                     <div>
                         <input className="expiry"
-                               type="tel"
+                               type="text"
                                name="expiry"
                                placeholder="MM/YY Expiry"
                                onChange={this.handleInputChange}

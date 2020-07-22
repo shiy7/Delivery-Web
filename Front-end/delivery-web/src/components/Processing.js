@@ -91,10 +91,9 @@ class Processing extends Component {
         this.setState({ current });
     }
 
-
     render() {
         const { current} = this.state;
-
+        console.log(this.props.infor);
         return (
             <div>
                 <Steps current={current} className="steps-bar">

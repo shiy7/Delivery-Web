@@ -9,6 +9,7 @@ class Recommend extends Component {
     //     this.state = {infor: props.infor};
     // }
 
+
     // componentDidMount() {
     //
     //             const url = '/recommend'
@@ -51,8 +52,6 @@ class Recommend extends Component {
     clear= () =>{
         localStorage.clear();
     }
-
-
 
 
     render() {
