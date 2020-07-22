@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import {API_ROOT} from "../constants"
+import { Descriptions, Badge, Col, Row } from 'antd';
 
 class Recommend extends Component {
-    state = {
-        userAddress: null,
-        receiverAddress: null
-    }
+
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {infor: props.infor};
+    // }
+
     // componentDidMount() {
     //
     //             const url = '/recommend'
@@ -13,8 +16,8 @@ class Recommend extends Component {
     //                 method: 'POST',
     //                 body: JSON.stringify({
     //
-    //                             useraddress: localStorage.getItem('userAddress'),
-    //                             raddress: localStorage.getItem('raddress'),
+    //                             useraddress: this.props,
+    //                             raddress: this.props,
     //                 }),
     //                 headers: {
     //                     'Access-Control-Allow-Origin': 'http://localhost:3000',
@@ -40,7 +43,9 @@ class Recommend extends Component {
             }
         })
             .then(response => response.json())
-            .then(data => console.log('data ->',data));
+            .then(data => {
+                console.log('data ->',data);
+            });
     }
 
     clear= () =>{
@@ -51,14 +56,25 @@ class Recommend extends Component {
 
 
     render() {
-
+        console.log(this.props.infor)
         return (
             <div>
-                <p>user address is {localStorage.getItem('userAddress')}</p>
-                <p>r address is {localStorage.getItem('raddress')}</p>
-                <button onClick={this.clear}>
+                {/*<p>user address is {localStorage.getItem('userAddress')}</p>*/}
+                {/*<p>r address is {localStorage.getItem('raddress')}</p>*/}
+                {/*<button onClick={this.clear}>*/}
 
-                </button>
+                {/*</button>*/}
+
+                <Row gutter={8}>
+                    <Col span={12}>
+                        <p>user address is {localStorage.getItem('userAddress')}</p>
+                    </Col>
+                </Row>
+                <Row gutter={8}>
+                    <Col span={12}>
+                        <p>user address is {localStorage.getItem('rAddress')}</p>
+                    </Col>
+                </Row>
             </div>
         );
     }

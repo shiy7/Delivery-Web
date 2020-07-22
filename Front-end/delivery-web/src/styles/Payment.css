@@ -1,0 +1,33 @@
+.pay {
+    margin-top: 80px;
+}
+
+
+
+.cardNumber {
+    margin-top: 10px;
+    height: 40px;
+    width: 500px;
+}
+
+.cardName {
+    margin-top: 10px;
+    height: 40px;
+    width: 500px;
+    margin-bottom: 10px;
+}
+
+.expiry {
+    margin-right: 10px;
+    width: 245px;
+    height: 40px;
+}
+
+.cardCVC {
+    width: 245px;
+    height: 40px;
+}
+
+input {
+    font-size: large;
+}
