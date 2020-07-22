@@ -1,7 +1,7 @@
+
 import React, {Component} from 'react';
 import {API_ROOT} from "../constants"
 import { Descriptions, Badge, Col, Row } from 'antd';
-import Button from "antd/es/button"
 
 class Recommend extends Component {
 
@@ -68,10 +68,6 @@ class Recommend extends Component {
                 <Row gutter={8}>
                     <Col span={12}>
                         <p>user address is {localStorage.getItem('userAddress')}</p>
-                        <Button type="default" onClick={this.goBack}>
-                            Prev
-                        </Button>
-
                     </Col>
                 </Row>
                 <Row gutter={8}>
@@ -83,5 +79,6 @@ class Recommend extends Component {
         );
     }
 }
+
 
 export default Recommend;

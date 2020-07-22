@@ -20,8 +20,12 @@ public class OrderController {
     private OrderRepository orderRepository;
 
     @GetMapping("/order/{orderNumber}")
-    public Order tracking(@PathVariable String orderNumber) {
-        return orderRepository.findByOrderNumber(orderNumber);
+    public ResponseEntity tracking(@PathVariable String orderNumber) {
+        Order order = orderRepository.findByOrderNumber(orderNumber);
+        if (order == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(order);
     }
 
     /*
