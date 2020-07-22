@@ -10,20 +10,14 @@ import OrderDetail from "./OrderDetail"
 
 const { Step } = Steps;
 
-
-
-
 class Processing extends Component {
 
     state = {
         current: 0,
         step: 1,
         infor: [],
-        step_two_fields: null,
-        step_final_fields: {
-            f_one_s_final: '',
-            f_two_s_final: ''
-        }
+        step_two_fields: [],
+        step_final_fields:[]
     }
 
     next =()=>{
@@ -36,8 +30,6 @@ class Processing extends Component {
         console.log(values);
         this.setState( {
             infor: values
-        },() => {
-            this.next()
         })
     };
 
@@ -48,9 +40,8 @@ class Processing extends Component {
             content: <Shipping
                 infor = {this.state.infor}
                 submittedValues={this.getStepOneValue}
-                // handleNextButton={this.next}
+                handleNextButton={this.next}
             />,
-            // content:<Shipping/>,
             description: "Please finish shipping information"
         },
         {
@@ -65,7 +56,7 @@ class Processing extends Component {
         },
         {
             title: 'Step 4',
-            content: <Payment />,
+            content: <Payment handleNextButton={this.next}/>,
             description: 'Please finish payment'
         },
         {
@@ -76,17 +67,8 @@ class Processing extends Component {
     ];
 
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         current: 0,
-    //         username: ''
-    //     }
-    // }
 
-
-
-    prev() {
+    prev = () => {
         const current = this.state.current - 1;
         this.setState({ current });
     }

@@ -13,7 +13,7 @@ class ShipForm extends Component {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 this.props.submittedValues(values);
-                // this.props.handleNextButton();
+                this.props.handleNextButton();
             }else{
                 console.log(err);
             }
