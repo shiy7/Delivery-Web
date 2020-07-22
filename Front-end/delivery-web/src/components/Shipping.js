@@ -23,7 +23,6 @@ class ShipForm extends Component {
 
 
     render() {
-        console.log(this.props.infor);
         const { Option } = Select;
         const { getFieldDecorator } = this.props.form;
 

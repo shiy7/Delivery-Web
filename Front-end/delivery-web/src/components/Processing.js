@@ -37,8 +37,6 @@ class Processing extends Component {
         console.log(values);
         this.setState( {
             infor: values
-        },() => {
-            this.next()
         })
     };
 
@@ -94,7 +92,6 @@ class Processing extends Component {
 
     render() {
         const { current} = this.state;
-        console.log(this.props.infor);
         return (
             <div>
                 <Steps current={current} className="steps-bar">
