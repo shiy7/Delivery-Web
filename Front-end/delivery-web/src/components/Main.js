@@ -67,6 +67,7 @@ class Main extends React.Component {
                         <Route path="/tracking/:id" component={Tracking} />
                         <Route path="/recommend" component={Recommend}/>
                         <Route path="/processing" component={Processing}/>
+                        <Route path="/pay" component={Processing}/>
                         {/*
                     default address to login
                     when the address is wrong, it direct to login
