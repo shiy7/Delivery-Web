@@ -9,39 +9,52 @@ class Tracking extends Component {
     state = {
         information:''
     }
-    storeData (data){
-        trackingnumber.package_info.deliver_address = data.deliverAddress;
-        trackingnumber.package_info.package_weight = data.packageWeight;
-        // trackingnumber.package_info.payment = data.payment;
-        trackingnumber.package_info.receiver_name = data.receiverName;
-    }
-
     componentDidMount() {
-        // this.setState("trackingNumber",this.props.match.params.id);
-        const tracking = this.props.match.params.id;
-        const url = '/order/'.concat(tracking)
-        trackingnumber.package_info.tracking_number = tracking;
+        this.fetchData();
+    }
 
-        console.log(url);
-                    fetch( url, {
-                        method: 'GET',
-                        headers: {
-                            'Access-Control-Allow-Origin': 'http://localhost:3000',
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        }
-                    })
-                        .then(response => response.json())
-                        .then(data=>{console.log(data);
-                            this.storeData(data);
-                        console.log(trackingnumber.package_info.deliver_address)}
-                        );
-                    // console.log(this.state.information);
-                        // .then(trackingnumber.package_info.deliver_address = data.deliverAddress);
+    componentDidUpdate() {
+        if(this.state.information.orderNumber !== this.props.match.params.id){
+            this.fetchData();
+        }
 
     }
+
+
+    toTracking(value){
+
+        this.props.history.push(`/tracking/`.concat(value));
+        // this.componentDidMount();
+}
+fetchData(){
+    const tracking = this.props.match.params.id;
+    const url = '/order/'.concat(tracking)
+    // trackingnumber.package_info.tracking_number = tracking;
+
+    console.log(url);
+    fetch( url, {
+        method: 'GET',
+        headers: {
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data=>{
+        this.setState({information:data});
+
+        }
+
+        );
+}
+
+
 
     render() {
+        // this.fetchData();
+        // console.log(trackingnumber.package_info);
+        console.log(this.state)
         return (
             <div>
                 <div className="input">
@@ -51,11 +64,11 @@ class Tracking extends Component {
                         enterButton="Tracking"
                         size="large"
                         style={{width: 800}}
-                        onSearch={value => console.log(value)}
+                        onSearch={value => this.toTracking(value)}
                     />
                 </div>
                 <div className="detail">
-                    <Row>
+                    {/*<Row>*/}
                         <OrderDetail info = {this.state.information}/>
                         {/*<Col span={8}>*/}
                         {/*    <OrderDetail info = {this.state.trackingNumber}/>*/}
@@ -68,7 +81,7 @@ class Tracking extends Component {
                             {/*    mapElement={<div style={{ height: `100%` }} />}*/}
                             {/*/>*/}
                         {/*</Col>*/}
-                    </Row>
+                    {/*</Row>*/}
                 </div>
             </div>
         );
@@ -76,13 +89,3 @@ class Tracking extends Component {
 }
 
 export default Tracking;
-export const trackingnumber ={
-    package_info: {
-        tracking_number:'',
-        deliver_address:'',
-        package_weight:'',
-        payment:'',
-        receiver_name:''
-}
-};
-export const trackingdata = React.createContext(trackingnumber.package_info);

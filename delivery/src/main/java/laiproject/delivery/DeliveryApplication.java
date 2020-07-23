@@ -41,9 +41,9 @@ DeliveryApplication {
 
         String stationAddress = "3783 20th St, San Francisco, CA 94110";
         String userAddress = params.get("useraddress").toString();
-//        "1031 Irving St, San Francisco, CA 94122";
+//        "3899 20th St, San Francisco, CA 94114";
         String receiverAddress = params.get("raddress").toString();
-//        "450 10th St, San Francisco, CA 94103";
+//        "3491 20th St, San Francisco, CA 94110";
 
         // get the robot deliver distance and time
         long robotDis = calculateRobotDistance(userAddress,receiverAddress,Distance_API_KEY) + calculateRobotDistance(userAddress,stationAddress,Distance_API_KEY);
@@ -52,11 +52,12 @@ DeliveryApplication {
 
         // get the drone deliver distance and time
         double droneDis = calculateDroneDistance(userAddress,receiverAddress,GeoCoding_API_KEY);
+        droneDis = (double) Math.round(droneDis*100)/100;
         double droneDeliverTime = estimateDroneDeliveryTime(droneDis);
         double droneCost =calculateDroneCost(droneDis);
 
         JsonObject jsonObj = new JsonObject();
-        jsonObj.addProperty("robotdistance",(double)robotDis/1000);
+        jsonObj.addProperty("robotdistance",(double)Math.round(robotDis/10)/100);
         jsonObj.addProperty("robottime",displayTime(robotDeliverTime));
         jsonObj.addProperty("robotcost",robotCost);
         jsonObj.addProperty("dronedistance",droneDis);

@@ -1,9 +1,20 @@
 import React, {Component} from 'react';
 import { Card, Col, Row ,Radio } from 'antd';
-import {API_ROOT} from "../constants"
-import {globaldata} from './Processing'
 import {Button, Form} from "antd";
+import drone_logo from '../assets/images/drone-icon.png';
+import robot_logo from '../assets/images/robot-icon.png';
+
 class RecommendForm extends Component {
+    state = {
+        robot_distance:'',
+        robot_cost:'',
+        robot_time:'',
+        drone_distance:'',
+        drone_cost:'',
+        drone_time:'',
+        route_info:'',
+        option: 1
+    }
     //  goNext = (e) => {
     //     e.preventDefault();
     //     validateFields((err, values) => {
@@ -14,109 +25,69 @@ class RecommendForm extends Component {
     //     });
     // }
     goNext = () => {
+        if(this.state.option == 1){
+            console.log(this.state.route_info.robotdistance);
+        }else if(this.state.option == 2){
+            console.log(this.state.route_info.dronedistance);
+        }
         this.props.handleNextButton();
     }
 
     goBack = () =>{
      // props.submittedValues(values);
+
         this.props.handlePrevButton();
 
 
     }
 
 
-    // state = {
-    //     username : null,
-    //     userAddress: null,
-    //     receiverAddress: null
-    // }
 
+    componentDidMount() {
 
+                const url = '/recommend'
+                fetch( url, {
+                    method: 'POST',
+                    body: JSON.stringify({
 
-    // componentDidUpdate(prevProps) {
-    //     if(prevProps.address !== this.props.address) {
-    //         this.setState({useraddress: this.props.address});
-    //     }
-    // }
-    // static getDerivedStateFromProps(props, state) {
-    //     // Any time the current user changes,
-    //     // Reset any parts of state that are tied to that user.
-    //     // In this simple example, that's just the email.
-    //     if (props.address !== state.useraddress) {
-    //         return {
-    //             useraddress: props.address
-    //         };
-    //     }
-    //     return null;
-    // }
-    // componentWillReceiveProps(nextProps) {
-    //     if(this.props.address !== nextProps.address){
-    //         console.log("doesn't match")
-    //     }else{
-    //         console.log("match")
-    //     }
-    //     this.setState({
-    //         useraddress: nextProps.address,
-    //
-    //     })
-    //
-    //
-    //
-    // }
+                                useraddress: localStorage.getItem('user_address'),
+                                raddress: localStorage.getItem('r_address'),
+                    }),
+                    headers: {
+                        'Access-Control-Allow-Origin': 'http://localhost:3000',
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('data ->',data);
+                        this.setState({route_info:data})
+                    });
 
-    // componentDidMount() {
-    //
-    //             const url = '/recommend'
-    //             fetch( url, {
-    //                 method: 'POST',
-    //                 body: JSON.stringify({
-    //
-    //                             useraddress: localStorage.getItem('userAddress'),
-    //                             raddress: localStorage.getItem('raddress'),
-    //                 }),
-    //                 headers: {
-    //                     'Access-Control-Allow-Origin': 'http://localhost:3000',
-    //                     'Accept': 'application/json',
-    //                     'Content-Type': 'application/json'
-    //                 }
-    //             })
-    //                 .then(response => response.json())
-    //                 .then(data => console.log('data ->',data));
-    //
-    // }
-
-    getResponse = ( ) => {
-        // const url = 'https://cors-anywhere.herokuapp.com/https://stackoverflow.com/questions/53998407/getting-undefined-when-trying-to-fetch-data-from-an-api-react';
-        // const url = 'http://localhost:8080/recommend';
-        // const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        const url = '/recommend'
-
-        fetch( url, {
-            method: 'GET',
-            headers: {
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
-            }
-        })
-            .then(response => response.json())
-            .then(data => console.log('data ->',data));
     }
+
 
     clear= () =>{
         localStorage.clear();
     }
 
-
+    onChange = e => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            option: e.target.value,
+        });
+    };
 
 
 
     render() {
-        console.log(globaldata._currentValue.useraddress);
+        // console.log(globaldata._currentValue.useraddress);
         // console.log(this.state.useraddress)
         // const address = localStorage.getItem("useraddress");
-        // console.log(localStorage.getItem("useraddress"));
+        console.log(localStorage.getItem("user_address"));
         // localStorage.removeItem("useraddress");
-        let field = this.context;
-        console.log(field);
+        // console.log(field);
         return (
             <div>
                 {/*<div style ={{float: "left", width: 50}}>*/}
@@ -124,20 +95,26 @@ class RecommendForm extends Component {
                 {/*<p>{globaldata._currentValue.useraddress}</p>*/}
 
 <div>
-                <Radio.Group>
+                <Radio.Group onChange={this.onChange} value={this.state.option}>
                     <Row gutter={16}>
                         <Col span={12}>
-                            <Card title="Route 1: shipping by robot" bordered={true}>
-                                Card content
+                            <img src={robot_logo} className="logo" alt="logo" />
+                            <Card title="Route 1: Robot Delivery" bordered={true} hoverable = {true}>
+                                <p>Distance: {this.state.route_info.robotdistance} km</p>
+                                <p>Cost: ${this.state.route_info.robotcost}</p>
+                                <p>Estimate deliver time: {this.state.route_info.robottime}</p>
                             </Card>
-                            <Radio >A</Radio>
+                            <Radio value={1}>Option 1: </Radio>
 
                         </Col>
                         <Col span={12}>
-                            <Card title="Route 2: shipping by Drone" bordered={true}>
-                                Card content
+                            <img src={drone_logo} className="logo" alt="logo" />
+                            <Card title="Route 2: Drone Delivery" bordered={true} hoverable = {true}>
+                                <p>Distance: {this.state.route_info.dronedistance} km</p>
+                                <p>Cost: ${this.state.route_info.dronecost}</p>
+                                <p>Estimate deliver time: {this.state.route_info.dronetime}</p>
                             </Card>
-                            <Radio >B</Radio>
+                            <Radio value={2}>Option 2:</Radio>
                         </Col>
 
                     </Row>
@@ -145,27 +122,7 @@ class RecommendForm extends Component {
 
                 </Radio.Group>
 </div>
-                {/*<span style= {{float:"left", width: 50}}>*/}
-                {/*<Card title="Route 1: shipping by robot" extra={<a href="#">More</a>} style={{ width: 300 }}>*/}
-                {/*  <p>Card content</p>*/}
-                {/*  <p>Card content</p>*/}
-                {/*  <p>Card content</p>*/}
-                {/*</Card>*/}
-                {/*<Card title="Route 2: shipping by robot " extra={<a href="#">More</a>} style={{ width: 300 }}>*/}
-                {/*  <p>Card content</p>*/}
-                {/*  <p>Card content</p>*/}
-                {/*  <p>Card content</p>*/}
-                {/*</Card>*/}
-                {/*</span>*/}
 
-
-                {/*</span>*/}
-                {/*</div>*/}
-                    {/*<p>user address is {localStorage.getItem('userAddress')}</p>*/}
-                {/*<p>r address is {localStorage.getItem('raddress')}</p>*/}
-                {/*<button onClick={this.clear}>*/}
-
-                {/*</button>*/}
                 <div className="buttonLayout" >
                 <Button type="default" onClick={this.goBack}>
                     Prev
@@ -177,6 +134,8 @@ class RecommendForm extends Component {
 
             </div>
         );
+
+
     }
 }
 const Recommend = Form.create({ name: 'Recommend' })(RecommendForm)

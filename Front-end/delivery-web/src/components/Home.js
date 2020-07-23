@@ -10,7 +10,7 @@ class Home extends Component {
     }
     goToTracking = () => {
         console.log(this.state.tracking);
-        localStorage.setItem("trackingNumber",this.state.tracking)
+        // localStorage.setItem("trackingNumber",this.state.tracking)
         // const tracking = ${this.state.tracking};
 
             this.props.history.push(`/tracking/${this.state.tracking}`);

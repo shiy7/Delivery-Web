@@ -21,7 +21,7 @@ class Processing extends Component {
 
     state = {
         current : 0,
-        useraddress:'2222 dr str',
+        useraddress:'',
         step_one_fields: {
             // username:'',
             // useraddress:''
@@ -49,10 +49,24 @@ class Processing extends Component {
     }
 
     getStepOneValue = (values) => {
-        const { step_one_fields } = this.state;
-        step1data.step_one_fields.useraddress = values.useraddress;
-        // localStorage.setItem("useraddress",values.useraddress);
-        // localStorage.setItem("raddress",values.raddress);
+        // const { step_one_fields } = this.state;
+        // step1data.step_one_fields.useraddress = values.useraddress;
+        localStorage.setItem("user_name",values.username);
+        localStorage.setItem("user_address",values.useraddress);
+        localStorage.setItem("user_phone",values.userphone);
+        localStorage.setItem("r_name",values.rname);
+        localStorage.setItem("r_phone",values.rphone);
+        localStorage.setItem("r_address",values.raddress);
+        localStorage.setItem("size",values.size);
+        localStorage.setItem("emergency",values.emergency);
+        localStorage.setItem("weight",values.weight);
+            //                 rname:values.rname,
+            //                 rphone: values.rphone,
+            //                 raddress: values.raddress,
+            //                 size: values.size,
+            //                 emergency: values.emergency,
+            //                 weight: values.weight
+
         this.setState({useraddress:values.useraddress},()=>this.information = this.state.useraddress);
 
         // this.setState({step_one_fields: {
@@ -119,7 +133,7 @@ class Processing extends Component {
 
 
     render() {
-        console.log(this.state.useraddress);
+        // console.log(this.state.useraddress);
         const { current} = this.state;
 
         return (

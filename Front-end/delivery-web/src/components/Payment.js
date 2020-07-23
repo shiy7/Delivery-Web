@@ -119,7 +119,7 @@ class Payment extends Component {
                     </div>
                 </form>
                 <div className="buttonPay">
-                    <Button type="primary" > Prev </Button>
+                    <Button type="default" > Prev </Button>
                     <Button type = "primary" onClick={this.handleSubmit}> Pay </Button>
                 </div>
 
