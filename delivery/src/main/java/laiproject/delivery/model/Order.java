@@ -5,6 +5,27 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/*
+{
+ "orderNumber": "1234",
+ "senderAddress":"5099 Picaqiu Road",
+    "deliverAddress": "4321 Crescent Road",
+ "senderName": "Tim",
+    "receiverName": "chris",
+    "receiverPhone":"57399092347"
+ "senderPhone":"57399092347"
+    "packageWeight": "2kg",
+    "Money": "10",
+ "CardNum":"1234",
+ "EstimateTime" "10 Min",
+    "shipmentStatus": "Not applicable",
+ "OrderTimeStamp":"2020.8.8 20.00pm"
+ "Size":"small",
+ "Emergency":"not urgent",
+ "UserID":"1"
+ "DeliverMethod":"Drone"
+}
+ */
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name = "orders")
@@ -24,6 +45,23 @@ public class Order implements Serializable{
     private String payment;
     @Column(name = "shipmentStatus")
     private String shipmentStatus;
+    @Column(name = "receiverPhone")
+    private String receiverPhone;
+    @Column(name = "senderPhone")
+    private String senderPhone;
+    @Column(name = "cardNo")
+    private String cardNo;
+    @Column(name = "estimateTime")
+    private String estimateTime;
+    @Column(name = "orderTimestamp")
+    private String orderTimestamp;
+    @Column(name = "packageSize")
+    private String packageSize;
+    @Column(name = "emergency")
+    private String emergency;
+    @Column(name = "DeliverMethod")
+    private String DeliverMethod;
+
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
