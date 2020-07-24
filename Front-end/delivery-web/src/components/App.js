@@ -12,9 +12,12 @@ class App extends Component{
       userID: String()
   }
 
-  handleLoginSucceed = (token) => {
+  handleLoginSucceed = (token, userID, password) => {
     console.log('token --- ', token)
     localStorage.setItem(TOKEN_KEY, token)
+      // user.authdata =
+      // localStorage.setItem("user",)user
+
     this.setState({ isLoggedIn: true });
   }
 
