@@ -11,7 +11,7 @@
 @import "./styles/Dashboard.css";
 @import "./styles/Processing.css";
 @import "./styles/Payment.css";
-
+@import "./styles/Confirm.css";
 
 body {
   margin: 0;
