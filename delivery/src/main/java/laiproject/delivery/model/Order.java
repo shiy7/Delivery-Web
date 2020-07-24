@@ -1,9 +1,11 @@
 package laiproject.delivery.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /*
 {
@@ -53,8 +55,7 @@ public class Order implements Serializable{
     private String cardNo;
     @Column(name = "estimateTime")
     private String estimateTime;
-    @Column(name = "orderTimestamp")
-    private String orderTimestamp;
+
     @Column(name = "packageSize")
     private String packageSize;
     @Column(name = "emergency")
@@ -62,6 +63,10 @@ public class Order implements Serializable{
     @Column(name = "DeliverMethod")
     private String DeliverMethod;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "orderTimestamp")
+    private Date orderTimestamp;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -74,6 +79,81 @@ public class Order implements Serializable{
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "drone_id")
     private Drone drone;
+
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
+    }
+
+    public Date getOrderTimestamp() {
+        return orderTimestamp;
+    }
+
+    public void setOrderTimestamp(Date orderTimestamp) {
+        this.orderTimestamp = orderTimestamp;
+    }
+
+    public String getReceiverPhone() {
+        return receiverPhone;
+    }
+
+    public void setReceiverPhone(String receiverPhone) {
+        this.receiverPhone = receiverPhone;
+    }
+
+    public String getSenderPhone() {
+        return senderPhone;
+    }
+
+    public void setSenderPhone(String senderPhone) {
+        this.senderPhone = senderPhone;
+    }
+
+    public String getCardNo() {
+        return cardNo;
+    }
+
+    public void setCardNo(String cardNo) {
+        this.cardNo = cardNo;
+    }
+
+    public String getEstimateTime() {
+        return estimateTime;
+    }
+
+    public void setEstimateTime(String estimateTime) {
+        this.estimateTime = estimateTime;
+    }
+
+    public String getPackageSize() {
+        return packageSize;
+    }
+
+    public void setPackageSize(String packageSize) {
+        this.packageSize = packageSize;
+    }
+
+    public String getEmergency() {
+        return emergency;
+    }
+
+    public void setEmergency(String emergency) {
+        this.emergency = emergency;
+    }
+
+    public String getDeliverMethod() {
+        return DeliverMethod;
+    }
+
+    public void setDeliverMethod(String deliverMethod) {
+        DeliverMethod = deliverMethod;
+    }
+
+
+
 
     public int getOrderId() {
         return order_id;
