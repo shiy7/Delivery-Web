@@ -5,6 +5,7 @@ import drone_logo from '../assets/images/drone-icon.png';
 import robot_logo from '../assets/images/robot-icon.png';
 
 class RecommendForm extends Component {
+     select_option= localStorage.getItem("option");
     state = {
         robot_distance: '',
         robot_cost: '',
@@ -13,41 +14,36 @@ class RecommendForm extends Component {
         drone_cost: '',
         drone_time: '',
         route_info: '',
-        option: 1
+        option: (this.select_option == null) ? "1" : this.select_option,
+        value:''
     }
-    //  goNext = (e) => {
-    //     e.preventDefault();
-    //     validateFields((err, values) => {
-    //         if(!err) {
-    //             props.submittedValues(values);
-    //             props.handleNextButton();
-    //         }
-    //     });
-    // }
+
     goNext = () => {
-        if (this.state.option === 1) {
-            console.log(this.state.route_info.robotdistance);
+        if (this.state.option === "1") {
             localStorage.setItem("method","robot");
             localStorage.setItem("cost",this.state.route_info.robotcost);
             localStorage.setItem("distance", this.state.route_info.robotdistance);
             localStorage.setItem("time",this.state.route_info.robottime);
-        } else if (this.state.option === 2) {
-            console.log(this.state.route_info.dronedistance);
+            localStorage.setItem("option","1");
+        } else if (this.state.option === "2") {
             localStorage.setItem("method","drone");
             localStorage.setItem("cost",this.state.route_info.dronecost);
             localStorage.setItem("distance", this.state.route_info.dronedistance);
             localStorage.setItem("time",this.state.route_info.dronetime);
+            localStorage.setItem("option","2");
         }
+
         this.props.handleNextButton();
     }
 
     goBack = () => {
         // props.submittedValues(values);
-
+        // localStorage.clear();
         this.props.handlePrevButton();
 
 
     }
+
 
 
     componentDidMount() {
@@ -86,22 +82,21 @@ class RecommendForm extends Component {
         });
     };
 
+    BonChange = e => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            value: e.target.value,
+        });
+    };
+
 
     render() {
-        // console.log(globaldata._currentValue.useraddress);
-        // console.log(this.state.useraddress)
-        // const address = localStorage.getItem("useraddress");
-        console.log(localStorage.getItem("user_address"));
-        // localStorage.removeItem("useraddress");
-        // console.log(field);
+
         return (
             <div>
-                {/*<div style ={{float: "left", width: 50}}>*/}
-                {/*<button onClick= {()=>this.forceUpdate()} >FORCE UPDATE</button>*/}
-                {/*<p>{globaldata._currentValue.useraddress}</p>*/}
 
                 <div>
-                    <Radio.Group onChange={this.onChange} value={this.state.option}>
+                    <Radio.Group onChange={this.onChange} value={this.state.option} >
                         <Row gutter={16}>
                             <Col span={12}>
                                 <img src={robot_logo} className="logo" alt="logo"/>
@@ -110,7 +105,7 @@ class RecommendForm extends Component {
                                     <p>Cost: ${this.state.route_info.robotcost}</p>
                                     <p>Estimate deliver time: {this.state.route_info.robottime}</p>
                                 </Card>
-                                <Radio value={1}>Option 1: </Radio>
+                                <Radio value="1">Option 1: </Radio>
 
                             </Col>
                             <Col span={12}>
@@ -120,7 +115,7 @@ class RecommendForm extends Component {
                                     <p>Cost: ${this.state.route_info.dronecost}</p>
                                     <p>Estimate deliver time: {this.state.route_info.dronetime}</p>
                                 </Card>
-                                <Radio value={2}>Option 2:</Radio>
+                                <Radio value="2">Option 2:</Radio>
                             </Col>
 
                         </Row>

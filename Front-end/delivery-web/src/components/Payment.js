@@ -66,58 +66,93 @@ class Payment extends Component {
         const lastDigit = new Array(13).join('*') + number.slice(number.length - 4);
         const tmp = `${lastDigit.slice(0, 4)} ${lastDigit.slice(4, 8
         )} ${lastDigit.slice(8, 12)} ${lastDigit.slice(12, 19)}`;
-        localStorage.setItem("Card number", tmp);
-        // this.postData;
+        localStorage.setItem("card", tmp);
+        this.postData();
+        this.clear();
         this.props.handleNextButton();
+    }
+
+    // show(){
+    //
+    //         console.log(localStorage.getItem("user_phone"));
+    //     console.log(localStorage.getItem("user_address"));
+    //     console.log(localStorage.getItem("r_name"));
+    //     console.log(localStorage.getItem("r_phone"));
+    //         console.log(localStorage.getItem("r_address"));
+    //             console.log(localStorage.getItem("size"));
+    //                 console.log(localStorage.getItem("emergency"));
+    //                     console.log(localStorage.getItem("weight"));
+    //                         console.log(localStorage.getItem("method"));
+    //                             console.log(localStorage.getItem("time"));
+    //                                 console.log(localStorage.getItem("cost"));
+    //                                     console.log(localStorage.getItem("distance"));
+    //                                         console.log(localStorage.getItem("card"));
+    // }
+    generateTrackingNumber(number) {
+        let i;
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        const digits = '0123456789';
+        const charactersLength = characters.length;
+        for (i = 0; i < 4; i++){
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        for (i = 0; i < number; i++ ) {
+
+            result += digits.charAt(Math.floor(Math.random() * 10));
+        }
+        return result;
     }
 
     postData = () => {
         // const encoded = window.btoa('rex: pass123');
         // const auth = 'Basic ' + encoded;
-        // fetch(`/order/user`, {
-        //     headers: {
-        //         'Access-Control-Allow-Origin': 'http://localhost:3000',
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json',
-        //         'Authorization': auth,
-        //     },
-        //     body: JSON.stringify({
-        //         username: localStorage.getItem("user_name"),
-        //         userphone: localStorage.getItem("user_phone"),
-        //         useraddress: localStorage.getItem("user_address"),
-        //         rname: localStorage.getItem("r_name"),
-        //         rphone: localStorage.getItem("r_phone"),
-        //         raddress: localStorage.getItem("r_address"),
-        //         size: localStorage.getItem("size"),
-        //         emergency: localStorage.getItem("emergency"),
-        //         weight: localStorage.getItem("weight"),
-        //         method: localStorage.getItem("method"),
-        //         time: localStorage.getItem("time"),
-        //         cost: localStorage.getItem("cost"),
-        //         distance: localStorage.getItem("distance"),
-        //         cardNumber: localStorage.getItem("Card number")
-        //     }),
-        // })
-        //     .then(response => {
-        //         // console.log(response);
-        //         if (response.ok) {
-        //             return response.text();
-        //         }
-        //         throw new Error(response.statusText);
-        //     })
-        //     .then((data) => {
-        //         console.log(data);
-        //         message.success('Registration succeed!');
-        //         // back to login page
-        //         console.log(this.props);
-        //         this.props.history.push('/login');
-        //
-        //
-        //     })
-        //     .catch((err) => {
-        //         console.error(err);
-        //         message.error('Registration failed.');
-        //     });
+        const trackingNum = this.generateTrackingNumber(12);
+        fetch(`/order?username=tim`, {
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': 'http://localhost:3000',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                // username: localStorage.getItem("user_name"),
+                orderNumber:trackingNum,
+                senderPhone: localStorage.getItem("user_phone"),
+                deliverAddress: localStorage.getItem("user_address"),
+                receiverName: localStorage.getItem("r_name"),
+                receiverPhone: localStorage.getItem("r_phone"),
+                receiverAddress: localStorage.getItem("r_address"),
+                packageSize: localStorage.getItem("size"),
+                emergency: localStorage.getItem("emergency"),
+                packageWeight: localStorage.getItem("weight"),
+                deliverMethod: localStorage.getItem("method"),
+                estimateTime: localStorage.getItem("time"),
+                money: localStorage.getItem("cost"),
+                estimateDistance: localStorage.getItem("distance"),
+                cardNo: localStorage.getItem("card")
+            }),
+        })
+            .then(response => {
+                // console.log(response);
+                if (response.ok) {
+                    return response.text();
+                }
+                throw new Error(response.statusText);
+            })
+            .then((data) => {
+                console.log(data);
+                message.success('Registration succeed!');
+                // back to login page
+                console.log(this.props);
+                // this.props.history.push('/login');
+
+
+            })
+            .catch((err) => {
+                console.error(err);
+                message.error('Registration failed.');
+            });
     }
 
     goBack = () => {

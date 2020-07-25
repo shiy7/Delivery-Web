@@ -58,12 +58,20 @@ class NormalLoginForm extends Component {
                 // parts of the HTTP pipeline, such as requests and responses.
                 // It also provides a global fetch() method that provides an easy,
                 // logical way to fetch resources asynchronously across the network.
-                fetch(`${API_ROOT}/login`, {
-                    method: `POST`,
-                    body: JSON.stringify({
-                        username: values.username,
-                        password: values.password,
-                    }),
+                let headers = new Headers();
+                headers.append('Authorization', 'Basic ' + btoa(values.username + ":" + values.password));
+                console.log(btoa(values.username + ":" + values.password));
+                fetch(`/login`, {
+                    method: `GET`,
+                    headers:headers,
+                    // headers: {
+                    //     'Access-Control-Allow-Origin': 'http://localhost:3000',
+                    //     'Authorization':''
+                    // },
+                    // body: JSON.stringify({
+                    //     username: values.username,
+                    //     password: values.password,
+                    // }),
                 })
                     .then(response => {
                         // console.log(response);

@@ -39,18 +39,10 @@ public class UserController {
                 (String.format("User: %s registration success", user.getUsername()));
     }
 
-    @GetMapping("/login")
-    public String login(Model model, String error, String logout) {
-        if (error != null) {
-//            model.addAttribute("error", "Your username and password is invalid.");
-            return "Your username and password is invalid.";
-        }
-        if (logout != null) {
-//            model.addAttribute("message", "You have been logged out successfully.");
-            return "You have been logged out successfully.";
-        }
-
-        return "login page";
+    @PostMapping("/login")
+    public ResponseEntity login() {
+        return ResponseEntity.status(HttpStatus.OK).body
+                ("Login Success!");
     }
 
     @GetMapping({"/", "/welcome"})

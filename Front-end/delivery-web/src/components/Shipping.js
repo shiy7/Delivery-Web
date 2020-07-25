@@ -20,6 +20,11 @@ class ShipForm extends Component {
         });
     }
 
+    // componentDidMount() {
+    //     if(localStorage.getItem("user_name") !== null){
+    //         value = localStorage.getItem("user_name");
+    //     }
+    // }
 
 
     render() {
@@ -52,6 +57,15 @@ class ShipForm extends Component {
         };
 
 
+        const u_name = localStorage.getItem("user_name");
+        const u_phone = localStorage.getItem("user_phone");
+        const u_address = localStorage.getItem("user_address");
+        const r_name = localStorage.getItem("r_name");
+        const r_phone = localStorage.getItem("r_phone");
+        const r_address = localStorage.getItem("r_address");
+        const size = localStorage.getItem("size");
+        const emergency = localStorage.getItem("emergency");
+        const weight = localStorage.getItem("weight");
 
         return (
             <div>
@@ -61,61 +75,48 @@ class ShipForm extends Component {
                 >
                     <Form.Item label="Name">
                         {getFieldDecorator('username', {
+                            initialValue:u_name,
                             rules: [{ required: true, message: 'Please input sender name!' }],
                         })(
-                            <Input placeholder="Full Name"/>,
+                            <Input placeholder="Full Name" />,
                         )}
                     </Form.Item>
                     <Form.Item label="Phone" >
                         {getFieldDecorator('userphone', {
+                            initialValue:u_phone,
                             rules: [{ required: true, message: 'Please input sender phone number!' }],
                         })(<Input />)}
                     </Form.Item>
                     <Form.Item label="Street Address" >
                         {getFieldDecorator('useraddress', {
+                            initialValue:u_address,
                             rules: [{ required: true, message: 'Please input sender street address!' }],
                         })(<Input />)}
                     </Form.Item>
 
-                    {/*<Form.Item label="City / State">*/}
-
-                    {/*    <Row gutter={8}>*/}
-                    {/*        <Col span={12}>*/}
-                    {/*            <Form.Item >*/}
-                    {/*                {getFieldDecorator('usercity', {*/}
-                    {/*                    rules: [{ required: true, message: 'Please input your City!' }],*/}
-                    {/*                })(<input placeholder="City" className="ant-input"/>)}*/}
-                    {/*            </Form.Item>*/}
-                    {/*        </Col>*/}
-                    {/*        <Col span={12}>*/}
-                    {/*            <Form.Item>*/}
-                    {/*                {getFieldDecorator('userstate', {*/}
-                    {/*                    rules: [{ required: true, message: 'Please input your State!' }],*/}
-                    {/*                })(<input placeholder="State" className="ant-input" />)}*/}
-                    {/*            </Form.Item>*/}
-                    {/*        </Col>*/}
-                    {/*    </Row>*/}
-                    {/*</Form.Item>*/}
-
                     <p className="infor">Receiver Information</p>
                     <Form.Item label="Name">
                         {getFieldDecorator('rname', {
+                            initialValue:r_name,
                             rules: [{ required: true, message: 'Please input receiver name!' }],
                         })(<Input />)}
                     </Form.Item>
                     <Form.Item name="rphone" label="Phone" rules={[{ required: true }]}>
                         {getFieldDecorator('rphone', {
+                            initialValue:r_phone,
                             rules: [{ required: true, message: 'Please input receiver phone number!' }],
                         })(<Input />)}
                     </Form.Item>
                     <Form.Item name="raddress" label="Address" rules={[{ required: true }]}>
                         {getFieldDecorator('raddress', {
+                            initialValue:r_address,
                             rules: [{ required: true, message: 'Please input receiver street address!' }],
                         })(<Input />)}
                     </Form.Item>
                     <p className="infor">Package Information</p>
                     <Form.Item name="size" label="Size" rules={[{ required: true }]}>
                         {getFieldDecorator('size', {
+                            initialValue:size,
                             rules: [{ required: true, message: 'Please choose package size!' }],
                         })(
                             <Select
@@ -131,11 +132,13 @@ class ShipForm extends Component {
                     </Form.Item>
                     <Form.Item name="weight" label="Weight" rules={[{ required: true }]}>
                         {getFieldDecorator('weight', {
+                            initialValue:weight,
                             rules: [{ required: true, message: 'Please input package weight!' }],
                         })(<Input addonAfter={'lb'}/>)}
                     </Form.Item>
                     <Form.Item name="emergency" label="Emergency" rules={[{ required: true }]}>
                         {getFieldDecorator('emergency', {
+                            initialValue:emergency,
                             rules: [{ required: true, message: 'Please choose package size!' }],
                         })(
                             <Select

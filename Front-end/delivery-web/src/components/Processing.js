@@ -114,8 +114,11 @@ class Processing extends Component {
         },
         {
             title: 'Done',
-            content: "Success! Your delivery robot is on the way!",
-            // description: 'Order details'
+            content: "Success! Your delivery robot is on the way!"
+            //     <div>
+            //     <p>"Success! Your delivery robot is on the way!"</p>
+            //     <>
+            // </div>
         }
     ];
 
