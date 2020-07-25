@@ -3,9 +3,8 @@ import {Button} from "antd";
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import Profile from "./Profile"
 import OrderHistory from "./OrderHistory"
-import {Route, Redirect, Switch} from "react-router-dom"
+import {Route, Redirect, Switch, withRouter} from "react-router-dom"
 import Link from "react-router-dom/Link"
-
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
@@ -19,6 +18,12 @@ class DashBoard extends Component {
         this.setState({ collapsed });
     };
 
+    // componentDidMount() {
+    //     if(localStorage.getItem("userID") == null){
+    //         this.props.history.push(`/login`);
+    //     }
+    // }
+
     // goToShipping = () => {
     // // console.log(1);
     //     // return <NavLink  to="/shipping">ship</NavLink>;
@@ -28,7 +33,9 @@ class DashBoard extends Component {
     // }
 
     render() {
+        // console.log(localStorage.getItem("userID"));
         return (
+            localStorage.getItem("userID") !== null ?
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                     <div className="logo" />
@@ -50,7 +57,7 @@ class DashBoard extends Component {
                 <Layout>
                     <Content style={{ margin: '0 16px' }}>
                         <Breadcrumb style={{ margin: '16px 0' }}>
-                            <Breadcrumb.Item>Welcome, User</Breadcrumb.Item>
+                            <Breadcrumb.Item>Welcome, {localStorage.getItem("userID")}</Breadcrumb.Item>
                         </Breadcrumb>
                         <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
                             <Switch>
@@ -61,7 +68,7 @@ class DashBoard extends Component {
                         </div>
                     </Content>
                 </Layout>
-            </Layout>
+            </Layout> : <Redirect to='/'/>
             // <div>
             //
             //         {/*<NavLink  to="/shipping">ship</NavLink>*/}
@@ -73,4 +80,4 @@ class DashBoard extends Component {
     }
 }
 
-export default DashBoard;
+export default withRouter (DashBoard);

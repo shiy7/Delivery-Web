@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Form, Input, Button, Select, message, Row, Col} from 'antd';
+import { withRouter } from "react-router-dom";
 import {API_ROOT} from "../constants";
 class ShipForm extends Component {
 
@@ -26,7 +27,9 @@ class ShipForm extends Component {
     //     }
     // }
 
-
+    toDashboard = ()=>{
+        this.props.history.push(`/dashboard`);
+    }
     render() {
 
         // console.log(this.state.useraddress);
@@ -120,7 +123,7 @@ class ShipForm extends Component {
                             rules: [{ required: true, message: 'Please choose package size!' }],
                         })(
                             <Select
-                                placeholder="Select a option and change input text above"
+                                placeholder="Select a option"
                                 // onChange={onGenderChange}
                                 allowClear
                             >
@@ -142,7 +145,7 @@ class ShipForm extends Component {
                             rules: [{ required: true, message: 'Please choose package size!' }],
                         })(
                             <Select
-                                placeholder="Select a option and change input text above"
+                                placeholder="Select a option"
                                 // onChange={onGenderChange}
                                 allowClear
                             >
@@ -153,6 +156,10 @@ class ShipForm extends Component {
                         )}
                     </Form.Item>
                     <Form.Item {...tailFormItemLayout}>
+
+                        <Button type="default" onClick={this.toDashboard}>
+                            Go back
+                        </Button>
 
                         <Button type="primary" htmlType="submit">
                             Next
@@ -168,22 +175,6 @@ class ShipForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-
-        function generateTrackingNumber(number) {
-            let i;
-            let result = '';
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-            const digits = '0123456789';
-            const charactersLength = characters.length;
-            for (i = 0; i < 4; i++){
-                result += characters.charAt(Math.floor(Math.random() * charactersLength));
-            }
-            for (i = 0; i < number; i++ ) {
-
-                result += digits.charAt(Math.floor(Math.random() * 10));
-            }
-            return result;
-        }
 
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
@@ -264,4 +255,4 @@ class ShipForm extends Component {
     };
 }
 const Shipping = Form.create({ name: 'shipping' })(ShipForm)
-export default Shipping;
+export default withRouter(Shipping);

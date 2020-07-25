@@ -14,11 +14,16 @@ import Payment from "./Payment";
 import Confirm from "./Confirm"
 
 class Main extends React.Component {
+    state = {
+
+    }
     getLogin = () => {
         // case 1: already login --> <Home></Home>
         // case 2: not yet --> <log />
-        return this.props.isLoggedIn ?
-            <Redirect to="/home"/>
+        // return this.props.isLoggedIn ?
+        return localStorage.getItem("userID") !== null ?
+            <Redirect to="/dashboard"/>
+            // : <Login />
             : <Login handleLoginSucceed={this.props.handleLoginSucceed}/>;
     }
 
@@ -46,6 +51,7 @@ class Main extends React.Component {
 
 
     render() {
+        console.log(this.props.isLoggedIn);
         return (
             <div className="main">
                 <div className="search">

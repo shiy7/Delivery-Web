@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Input, Row, Col, Descriptions} from 'antd';
+import {Input, Row, Col, Descriptions, message} from 'antd';
 import TrackingMap from "./TrackingMap";
 import OrderDetail from "./OrderDetail"
 
@@ -47,13 +47,17 @@ class Tracking extends Component {
                     this.setState({information: data});
 
                 }
-            );
+            )
+            .catch((err) => {
+                console.error(err);
+                message.error('No existing package, please enter a valid tracking number!');
+                this.props.history.push(`/home`);
+            });
+
     }
 
 
     render() {
-        // this.fetchData();
-        // console.log(trackingnumber.package_info);
         console.log(this.state)
         return (
             <div>

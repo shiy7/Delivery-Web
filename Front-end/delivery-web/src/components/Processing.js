@@ -137,6 +137,7 @@ class Processing extends Component {
         const {current} = this.state;
 
         return (
+            localStorage.getItem("userID") !== null ?
             <div>
                 <Steps current={current} className="steps-bar">
                     {this.steps.map(item => (
@@ -171,7 +172,7 @@ class Processing extends Component {
                 {/*        </Button>*/}
                 {/*    )}*/}
                 {/*</div>*/}
-            </div>
+            </div> : <Redirect to='/'/>
         );
     }
 }

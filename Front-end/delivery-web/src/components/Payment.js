@@ -72,22 +72,7 @@ class Payment extends Component {
         this.props.handleNextButton();
     }
 
-    // show(){
-    //
-    //         console.log(localStorage.getItem("user_phone"));
-    //     console.log(localStorage.getItem("user_address"));
-    //     console.log(localStorage.getItem("r_name"));
-    //     console.log(localStorage.getItem("r_phone"));
-    //         console.log(localStorage.getItem("r_address"));
-    //             console.log(localStorage.getItem("size"));
-    //                 console.log(localStorage.getItem("emergency"));
-    //                     console.log(localStorage.getItem("weight"));
-    //                         console.log(localStorage.getItem("method"));
-    //                             console.log(localStorage.getItem("time"));
-    //                                 console.log(localStorage.getItem("cost"));
-    //                                     console.log(localStorage.getItem("distance"));
-    //                                         console.log(localStorage.getItem("card"));
-    // }
+
     generateTrackingNumber(number) {
         let i;
         let result = '';
@@ -142,7 +127,7 @@ class Payment extends Component {
             })
             .then((data) => {
                 console.log(data);
-                message.success('Registration succeed!');
+                message.success('Submission succeed!');
                 // back to login page
                 console.log(this.props);
                 // this.props.history.push('/login');
@@ -151,7 +136,7 @@ class Payment extends Component {
             })
             .catch((err) => {
                 console.error(err);
-                message.error('Registration failed.');
+                message.error('Submission failed.');
             });
     }
 

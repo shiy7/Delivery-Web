@@ -52,7 +52,7 @@ class NormalLoginForm extends Component {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                // console.log('Received values of form: ', values);
 
                 // Fetch API provides a JavaScript interface for accessing and manipulating
                 // parts of the HTTP pipeline, such as requests and responses.
@@ -60,7 +60,7 @@ class NormalLoginForm extends Component {
                 // logical way to fetch resources asynchronously across the network.
                 let headers = new Headers();
                 headers.append('Authorization', 'Basic ' + btoa(values.username + ":" + values.password));
-                console.log(btoa(values.username + ":" + values.password));
+                // console.log(btoa(values.username + ":" + values.password));
                 fetch(`/login`, {
                     method: `GET`,
                     headers:headers,
@@ -83,8 +83,9 @@ class NormalLoginForm extends Component {
                     .then(data => {
                         console.log(data);
                         //step4: 登录成功，保存token -> 用于实现持久登录
-                        this.props.handleLoginSucceed(data);
+                        this.props.handleLoginSucceed(values.username);
                         message.success('Login succeed!');
+                        // this.props.history.push(`/dashboard`);
                     })
                     .catch((err) => {
                         console.error(err);
@@ -93,7 +94,7 @@ class NormalLoginForm extends Component {
             }
         });
 
-        
+
     };
 }
 

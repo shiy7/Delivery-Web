@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Input} from 'antd';
+import {Button, Input, message} from 'antd';
 
 const {Search} = Input;
 
@@ -9,11 +9,14 @@ class Home extends Component {
         tracking:null
     }
     goToTracking = () => {
-        console.log(this.state.tracking);
         // localStorage.setItem("trackingNumber",this.state.tracking)
         // const tracking = ${this.state.tracking};
-
+        if(this.state.tracking == null){
+            message.error('Input needed.');
+        }else{
             this.props.history.push(`/tracking/${this.state.tracking}`);
+        }
+
     }
     handleChange = e => {
         const { value } = e.target;
@@ -22,8 +25,13 @@ class Home extends Component {
         // console.log(e.target.value);
     }
 
-    render() {
+    // componentDidMount() {
+    //     this.props.isLoggedIn
+    // }
 
+    render() {
+        // console.log(this.props.isLoggedIn);
+        console.log(localStorage.getItem("userID"));
         // let obj = JSON.parse("{\"originAddresses\":[\"780 S Airport Blvd, San Francisco, CA 94128, USA\"],\"destinationAddresses\":[\"1600 Holloway Ave, San Francisco, CA 94132, USA\"],\"rows\":[{\"elements\":[{\"status\":\"OK\",\"duration\":{\"inSeconds\":859,\"humanReadable\":\"14 mins\"},\"durationInTraffic\":null,\"distance\":{\"inMeters\":15456,\"humanReadable\":\"15.5 km\"},\"fare\":null}]}]}")
         // console.log(obj.rows[0].elements[0].distance.humanReadable);
         // console.log(obj.rows[0].elements[0].duration.humanReadable);
