@@ -71,10 +71,6 @@ class RecommendForm extends Component {
     }
 
 
-    clear = () => {
-        localStorage.clear();
-    }
-
     onChange = e => {
         console.log('radio checked', e.target.value);
         this.setState({
@@ -82,12 +78,6 @@ class RecommendForm extends Component {
         });
     };
 
-    BonChange = e => {
-        console.log('radio checked', e.target.value);
-        this.setState({
-            value: e.target.value,
-        });
-    };
 
 
     render() {

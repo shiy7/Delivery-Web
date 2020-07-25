@@ -92,6 +92,8 @@ class NormalLoginForm extends Component {
                     });
             }
         });
+
+        
     };
 }
 
