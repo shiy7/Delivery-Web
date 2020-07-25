@@ -15,7 +15,8 @@ class RecommendForm extends Component {
         drone_time: '',
         route_info: '',
         option: (this.select_option == null) ? "1" : this.select_option,
-        value:''
+        value:'',
+        loading:true
     }
 
     goNext = () => {
@@ -65,9 +66,10 @@ class RecommendForm extends Component {
             .then(response => response.json())
             .then(data => {
                 console.log('data ->', data);
-                this.setState({route_info: data})
+                this.setState({route_info: data});
+                this.setState({loading: false});
             });
-
+        // this.setState({loading: false})
     }
 
 
@@ -90,7 +92,7 @@ class RecommendForm extends Component {
                         <Row gutter={16}>
                             <Col span={12}>
                                 <img src={robot_logo} className="logo" alt="logo"/>
-                                <Card title="Route 1: Robot Delivery" bordered={true} hoverable={true}>
+                                <Card title="Route 1: Robot Delivery" bordered={true} hoverable={true} loading={this.state.loading}>
                                     <p>Distance: {this.state.route_info.robotdistance} km</p>
                                     <p>Cost: ${this.state.route_info.robotcost}</p>
                                     <p>Estimate deliver time: {this.state.route_info.robottime}</p>
@@ -100,7 +102,7 @@ class RecommendForm extends Component {
                             </Col>
                             <Col span={12}>
                                 <img src={drone_logo} className="logo" alt="logo"/>
-                                <Card title="Route 2: Drone Delivery" bordered={true} hoverable={true}>
+                                <Card title="Route 2: Drone Delivery" bordered={true} hoverable={true} loading={this.state.loading}>
                                     <p>Distance: {this.state.route_info.dronedistance} km</p>
                                     <p>Cost: ${this.state.route_info.dronecost}</p>
                                     <p>Estimate deliver time: {this.state.route_info.dronetime}</p>
