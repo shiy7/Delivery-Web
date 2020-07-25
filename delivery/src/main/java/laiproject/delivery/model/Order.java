@@ -1,6 +1,6 @@
 package laiproject.delivery.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
