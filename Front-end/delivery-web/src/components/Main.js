@@ -12,6 +12,7 @@ import Processing from "./Processing"
 import Profile from "./Profile"
 import Payment from "./Payment";
 import Confirm from "./Confirm"
+import SuccessPage from "./SuccessPage";
 
 class Main extends React.Component {
     state = {

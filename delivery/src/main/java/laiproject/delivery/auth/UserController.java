@@ -39,7 +39,7 @@ public class UserController {
                 (String.format("User: %s registration success", user.getUsername()));
     }
 
-    @PostMapping("/login")
+    @GetMapping("/login")
     public ResponseEntity login() {
         return ResponseEntity.status(HttpStatus.OK).body
                 ("Login Success!");

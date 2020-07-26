@@ -10,6 +10,7 @@ class Payment extends Component {
         focus: '',
         name: '',
         number: '',
+        tracking:''
     };
 
     handleInputFocus = (e) => {
@@ -93,6 +94,7 @@ class Payment extends Component {
         // const encoded = window.btoa('rex: pass123');
         // const auth = 'Basic ' + encoded;
         const trackingNum = this.generateTrackingNumber(12);
+        this.setState({tracking: trackingNum});
         fetch(`/order?username=tim`, {
             method: 'POST',
             headers: {
@@ -146,7 +148,10 @@ class Payment extends Component {
     }
 
     clear = () => {
+        let userID = localStorage.getItem("userID");
         localStorage.clear();
+        localStorage.setItem("userID",userID);
+        localStorage.setItem("tracking",this.state.tracking);
     }
 
     render() {
