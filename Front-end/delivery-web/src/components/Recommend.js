@@ -45,6 +45,10 @@ class RecommendForm extends Component {
 
     }
 
+    // constructor(props) {
+    //     super(props);
+    // }
+
 
 
     componentDidMount() {
@@ -83,6 +87,8 @@ class RecommendForm extends Component {
 
 
     render() {
+
+        console.log("address: ", this.props.address);
 
         return (
             <div>
