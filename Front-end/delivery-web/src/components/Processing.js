@@ -119,6 +119,7 @@ class Processing extends Component {
         const {current} = this.state;
 
         return (
+
             localStorage.getItem("userID") !== null ?
             <div>
                 <Steps current={current} className="steps-bar">
