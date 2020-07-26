@@ -70,13 +70,9 @@ class Main extends React.Component {
                         <Route path="/login" render={this.getLogin}/>
                         <Route path="/register" component={Register}/>
                         <Route path="/home" component={Home}/>
-                        <Route path="/shipping" component={Shipping}/>
                         <Route path="/dashboard" component={DashBoard}/>
                         <Route path="/tracking/:id" component={Tracking} />
-                        <Route path="/recommend" component={Recommend}/>
                         <Route path="/processing" component={Processing}/>
-                        <Route path="/pay" component={Payment}/>
-                        <Route path='/confirm' component={Confirm}/>
                         {/*
                     default address to login
                     when the address is wrong, it direct to login

@@ -17,30 +17,21 @@ class Processing extends Component {
     state = {
         current: 0,
         useraddress: '',
-        step_one_fields: {
-            // username:'',
-            // useraddress:''
-        },
-        step_two_fields: {
-            f_one_s_two: '',
-            f_two_s_two: ''
-        },
-        step_final_fields: {
-            f_one_s_final: '',
-            f_two_s_final: ''
-        },
+        step_one_fields: [],
+
 
     }
     prev = () => {
         const current = this.state.current - 1;
         this.setState({current});
     }
+
     next = () => {
 
         const current = this.state.current + 1;
 
         this.setState({current});
-        console.log(this.state.useraddress);
+        // console.log(this.state.useraddress);
     }
 
     getStepOneValue = (values) => {
@@ -55,19 +46,10 @@ class Processing extends Component {
         localStorage.setItem("size", values.size);
         localStorage.setItem("emergency", values.emergency);
         localStorage.setItem("weight", values.weight);
-        //                 rname:values.rname,
-        //                 rphone: values.rphone,
-        //                 raddress: values.raddress,
-        //                 size: values.size,
-        //                 emergency: values.emergency,
-        //                 weight: values.weight
 
-        this.setState({useraddress: values.useraddress}, () => this.information = this.state.useraddress);
 
-        // this.setState({step_one_fields: {
-        //         // ...step_one_fields,
-        //         // ...values
-        //     }})
+        this.setState({step_one_fields:{...values}});
+
 
     };
 
@@ -76,7 +58,7 @@ class Processing extends Component {
         // step1data.step_one_fields.useraddress = values.useraddress;
         // localStorage.setItem("useraddress",values.useraddress);
         // localStorage.setItem("raddress",values.raddress);
-        this.setState({useraddress: values.useraddress}, () => this.information = this.state.useraddress);
+        this.setState({useraddress: values.useraddress});
 
         // this.setState({step_one_fields: {
         //         // ...step_one_fields,
@@ -88,7 +70,7 @@ class Processing extends Component {
         // localStorage.setItem("cost",values.cost);
 
     };
-    information = null;
+
     steps = [
         {
             title: 'Step 1',
@@ -98,7 +80,7 @@ class Processing extends Component {
         },
         {
             title: 'Step 2',
-            content: <Recommend address={this.information} handlePrevButton={this.prev} handleNextButton={this.next}
+            content: <Recommend address={this.state.step_one_fields} handlePrevButton={this.prev} handleNextButton={this.next}
                                 submittedValues={this.getStepTwoValue}/>,
             description: 'Please choose one shipping method'
         },
@@ -133,7 +115,7 @@ class Processing extends Component {
 
 
     render() {
-        // console.log(this.state.useraddress);
+        console.log("==> ", this.state.step_one_fields);
         const {current} = this.state;
 
         return (
@@ -155,23 +137,7 @@ class Processing extends Component {
                     {/*    <Route path='/processing/details' component={OrderDetail}/>*/}
                     {/*</Switch>*/}
                 </div>
-                {/*<div className="steps-action">*/}
-                {/*    {current < this.steps.length - 1 && (*/}
-                {/*        <Button type="primary" onClick={() => this.next()}>*/}
-                {/*            Next*/}
-                {/*        </Button>*/}
-                {/*    )}*/}
-                {/*    {current === this.steps.length - 1 && (*/}
-                {/*        <Button type="primary" onClick={() => message.success('Processing complete!')}>*/}
-                {/*            Done*/}
-                {/*        </Button>*/}
-                {/*    )}*/}
-                {/*    {current > 0 && (*/}
-                {/*        <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>*/}
-                {/*            Previous*/}
-                {/*        </Button>*/}
-                {/*    )}*/}
-                {/*</div>*/}
+
             </div> : <Redirect to='/'/>
         );
     }
