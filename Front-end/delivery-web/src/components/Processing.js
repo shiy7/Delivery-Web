@@ -6,7 +6,7 @@ import Recommend from "./Recommend"
 import {Link, Redirect, Route, Switch, withRouter} from "react-router-dom"
 import Confirm from "./Confirm"
 import Payment from "./Payment"
-import OrderDetail from "./OrderDetail"
+import SuccessPage from "./SuccessPage";
 
 const {Step} = Steps;
 
@@ -114,7 +114,7 @@ class Processing extends Component {
         },
         {
             title: 'Done',
-            content: "Success! Your delivery robot is on the way!"
+            content: <SuccessPage />
             //     <div>
             //     <p>"Success! Your delivery robot is on the way!"</p>
             //     <>

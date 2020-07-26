@@ -12,6 +12,7 @@ import Processing from "./Processing"
 import Profile from "./Profile"
 import Payment from "./Payment";
 import Confirm from "./Confirm"
+import SuccessPage from "./SuccessPage";
 
 class Main extends React.Component {
     state = {
@@ -77,6 +78,7 @@ class Main extends React.Component {
                         <Route path="/processing" component={Processing}/>
                         <Route path="/pay" component={Payment}/>
                         <Route path='/confirm' component={Confirm}/>
+                        <Route path='/success' component={SuccessPage}/>
                         {/*
                     default address to login
                     when the address is wrong, it direct to login
