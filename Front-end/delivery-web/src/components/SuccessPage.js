@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Card, Col, Radio, Row} from "antd";
-import robot_logo from "../assets/images/robot-icon.png";
-import drone_logo from "../assets/images/drone-icon.png";
+import {withRouter} from "react-router-dom";
 
 class SuccessPage extends Component {
 
@@ -22,4 +21,4 @@ goDashBoard = () => {
     }
 }
 
-export default SuccessPage;
+export default withRouter(SuccessPage);
