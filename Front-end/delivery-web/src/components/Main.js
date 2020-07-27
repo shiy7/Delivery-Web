@@ -15,9 +15,7 @@ import Confirm from "./Confirm"
 import SuccessPage from "./SuccessPage";
 
 class Main extends React.Component {
-    state = {
 
-    }
     getLogin = () => {
         // case 1: already login --> <Home></Home>
         // case 2: not yet --> <log />
@@ -27,29 +25,6 @@ class Main extends React.Component {
             // : <Login />
             : <Login handleLoginSucceed={this.props.handleLoginSucceed}/>;
     }
-
-
-    getHome = () => {
-        // case 1: already login --> <Home />
-        // case 2: not yet --> <log />
-        // return this.props.isLoggedIn ?
-        //     <Home/> : <Redirect to="/login"/>;
-        return <Home/>;
-    }
-
-    getShipping = () => {
-        return this.props.isLoggedIn ?
-            <Shipping handleLoginSucceed={this.props.handleLoginSucceed}/> : <Redirect to="/login"/>;
-    }
-
-    getDashBoard = () => {
-        return this.props.isLoggedIn ?
-            <DashBoard />: <Redirect to="/login"/>;
-    }
-
-
-
-
 
     render() {
         console.log(this.props.isLoggedIn);
