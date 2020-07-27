@@ -45,6 +45,16 @@ public class Order implements Serializable{
     private String DeliverMethod;
     @Column(name = "estimateDistance")
     private String estimateDistance;
+    @Column(name = "DeliverRobotLocation")
+    private String DeliverRobotLocation;
+
+    public String getDeliverRobotLocation() {
+        return DeliverRobotLocation;
+    }
+
+    public void setDeliverRobotLocation(String deliverRobotLocation) {
+        DeliverRobotLocation = deliverRobotLocation;
+    }
 
     public String getOrderNumber() {
         return orderNumber;

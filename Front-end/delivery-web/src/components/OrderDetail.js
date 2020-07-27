@@ -16,7 +16,7 @@ state = {
 
     render() {
         const {deliverAddress,packageWeight,receiverName,orderNumber,receiverAddress,senderPhone,receiverPhone,packageSize,
-            emergency,deliverMethod,estimateDistance,estimateTime,cardNo,money} = this.props.info;
+            emergency,deliverMethod,estimateDistance,estimateTime,cardNo,money,shipmentStatus,deliverRobotLocation} = this.props.info;
 
         return (
             <div>
@@ -82,6 +82,14 @@ state = {
 
                 <Descriptions.Item label="Payment card info">
                     {cardNo}
+                </Descriptions.Item>
+
+                <Descriptions.Item label="Shipment Status">
+                    in {shipmentStatus}
+                </Descriptions.Item>
+
+                <Descriptions.Item label="Deliver Robot Location">
+                    {deliverRobotLocation}
                 </Descriptions.Item>
 
             </Descriptions>

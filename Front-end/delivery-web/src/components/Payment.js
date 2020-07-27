@@ -70,6 +70,7 @@ class Payment extends Component {
         localStorage.setItem("card", tmp);
         this.postData();
         this.clear();
+        console.log(localStorage.getItem("tracking"));
         this.props.handleNextButton();
     }
 
@@ -94,7 +95,8 @@ class Payment extends Component {
         // const encoded = window.btoa('rex: pass123');
         // const auth = 'Basic ' + encoded;
         const trackingNum = this.generateTrackingNumber(12);
-        this.setState({tracking: trackingNum});
+        localStorage.setItem("tracking",trackingNum);
+        // this.setState({tracking: trackingNum});
         fetch(`/order?username=tim`, {
             method: 'POST',
             headers: {
@@ -117,7 +119,9 @@ class Payment extends Component {
                 estimateTime: localStorage.getItem("time"),
                 money: localStorage.getItem("cost"),
                 estimateDistance: localStorage.getItem("distance"),
-                cardNo: localStorage.getItem("card")
+                cardNo: localStorage.getItem("card"),
+                shipmentStatus: "pick up",
+                deliverRobotLocation: "3908 20th St, San Francisco, CA 94114"
             }),
         })
             .then(response => {
@@ -149,9 +153,11 @@ class Payment extends Component {
 
     clear = () => {
         let userID = localStorage.getItem("userID");
+        let tracking = localStorage.getItem("tracking");
         localStorage.clear();
         localStorage.setItem("userID",userID);
-        localStorage.setItem("tracking",this.state.tracking);
+
+        localStorage.setItem("tracking",tracking);
     }
 
     render() {
