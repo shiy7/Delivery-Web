@@ -113,12 +113,12 @@ class Home extends Component {
                                     <li>
                                         <Icon type="robot" style={{fontSize:"100px"}} className="homeIcon"/>
                                         <h3>Delivery Method</h3>
-                                        <h5>Choose delivery method: less cost / time</h5>
+                                        <p>Choose delivery method: less cost / time</p>
                                     </li>
                                     <li>
                                         <Icon type="check-square" style={{fontSize:"100px"}} className="homeIcon"/>
                                         <h3>Confirmation</h3>
-                                        <h5 style={{wordWrap:"break-word"}}>Confirm order information</h5>
+                                        <p style={{wordWrap:"break-word"}}>Confirm order information</p>
                                     </li>
                                     <li>
                                         <Icon type="credit-card" style={{fontSize:"100px"}} className="homeIcon"/>
@@ -134,7 +134,8 @@ class Home extends Component {
                             </div>
                         </div>
                         <div className="homeImage">
-                            <img src={robot} alt="Robot Delivery" width="20%" height="350px"/>;
+                            <h2 > Our Robot & Drone</h2>
+                            <img src={robot} alt="Robot Delivery" width="22%" height="350px"/>;
                             <img src={drone} alt="Drone Delivery" width="30%" height="300px"/>;
                         </div>
                     </div>

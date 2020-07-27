@@ -62,7 +62,7 @@
     vertical-align: middle;
 }
 
-.homeFeature > h2 {
+.homeFeature > h2, .homeImage > h2 {
     display: block;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -73,7 +73,7 @@
 }
 
 .factage {
-    margin: 20px;
+    margin: 20px 20px 40px 20px;
 }
 
 .homeStep {
@@ -129,6 +129,10 @@ ol.circle li:before {
     box-shadow: 0 0 0 1px #fff;
     content: counter(step-counter);
 
+}
+
+ol.circle > li > h3, p {
+    color: white;
 }
 
 

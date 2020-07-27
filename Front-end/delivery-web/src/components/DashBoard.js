@@ -56,7 +56,7 @@ class DashBoard extends Component {
                 </Sider>
                 <Layout>
                     <Content style={{ margin: '0 16px' }}>
-                        <Breadcrumb style={{ margin: '16px 0' }}>
+                        <Breadcrumb style={{ margin: '16px 0', fontSize:"20px" }}>
                             <Breadcrumb.Item>Welcome, {localStorage.getItem("userID")}</Breadcrumb.Item>
                         </Breadcrumb>
                         <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
