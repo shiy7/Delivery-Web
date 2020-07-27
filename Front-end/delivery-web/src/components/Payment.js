@@ -119,7 +119,9 @@ class Payment extends Component {
                 estimateTime: localStorage.getItem("time"),
                 money: localStorage.getItem("cost"),
                 estimateDistance: localStorage.getItem("distance"),
-                cardNo: localStorage.getItem("card")
+                cardNo: localStorage.getItem("card"),
+                shipmentStatus: "pick up",
+                deliverRobotLocation: "3908 20th St, San Francisco, CA 94114"
             }),
         })
             .then(response => {
