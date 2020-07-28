@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -26,6 +27,16 @@ public class OrderController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
         return ResponseEntity.status(HttpStatus.OK).body(order);
+    }
+
+    @GetMapping("/history")
+    public ResponseEntity history(@RequestParam String username) {
+        User user = userRepository.findByUsername(username);
+        List<Order> orders = orderRepository.findByUser(user);
+        if (orders == null || orders.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(orders);
     }
 
     /*

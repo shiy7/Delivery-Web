@@ -15,23 +15,12 @@ public class User{
     private String password;
     private boolean enabled;
 
-    @Transient
-    private String passwordConfirm;
-
     public User() {
     }
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-    }
-
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
     }
 
     @ManyToMany
