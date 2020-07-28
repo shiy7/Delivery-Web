@@ -58,7 +58,7 @@ class Home extends Component {
                         </Button>
                     </div>
                     <div className="homeFeature">
-                        <h2 >Main Features</h2>
+                        <h2 className="HomeTitle">Main Features</h2>
                         <div>
                             <Row>
                                 <Col span={8}>
@@ -101,40 +101,40 @@ class Home extends Component {
                             </Row>
                         </div>
                         <div className="homeStep">
-                            <h2 > Steps to order</h2>
+                            <h2 className="HomeTitle"> Steps to order</h2>
                             <h4>Follow these 5 steps to create an order after you log in. </h4>
                             <div className="innerStep">
                                 <ol className="circle">
                                     <li>
                                         <Icon type="form" style={{fontSize:"100px"}} className="homeIcon"/>
                                         <h3>Shipping Form</h3>
-                                        <p>Add shipping information</p>
+                                        <p className="HomeContent">Add shipping information</p>
                                     </li>
                                     <li>
                                         <Icon type="robot" style={{fontSize:"100px"}} className="homeIcon"/>
                                         <h3>Delivery Method</h3>
-                                        <p>Choose delivery method: less cost / time</p>
+                                        <p className="HomeContent">Choose delivery method: less cost / time</p>
                                     </li>
                                     <li>
                                         <Icon type="check-square" style={{fontSize:"100px"}} className="homeIcon"/>
                                         <h3>Confirmation</h3>
-                                        <p style={{wordWrap:"break-word"}}>Confirm order information</p>
+                                        <p className="HomeContent" style={{wordWrap:"break-word"}}>Confirm order information</p>
                                     </li>
                                     <li>
                                         <Icon type="credit-card" style={{fontSize:"100px"}} className="homeIcon"/>
                                         <h3>Payment</h3>
-                                        <p>Pay with your order</p>
+                                        <p className="HomeContent">Pay with your order</p>
                                     </li>
                                     <li>
                                         <Icon type="smile" style={{fontSize:"100px"}} className="homeIcon"/>
                                         <h3>Order Finish </h3>
-                                        <p>Get your tracking number</p>
+                                        <p className="HomeContent">Get your tracking number</p>
                                     </li>
                                 </ol>
                             </div>
                         </div>
                         <div className="homeImage">
-                            <h2 > Our Robot & Drone</h2>
+                            <h2 className="HomeTitle" > Our Robot & Drone</h2>
                             <img src={robot} alt="Robot Delivery" width="22%" height="350px"/>;
                             <img src={drone} alt="Drone Delivery" width="30%" height="300px"/>;
                         </div>

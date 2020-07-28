@@ -62,7 +62,7 @@
     vertical-align: middle;
 }
 
-.homeFeature > h2, .homeImage > h2 {
+.HomeTitle {
     display: block;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -82,7 +82,7 @@
     margin-bottom: 10px;
 }
 
-div.homeStep > h2  {
+.homeStep > .HomeTitle {
     display: block;
     margin-top: 20px;
     letter-spacing: 3px;
@@ -131,7 +131,7 @@ ol.circle li:before {
 
 }
 
-ol.circle > li > h3, p {
+ol.circle > li > h3, p.HomeContent {
     color: white;
 }
 
