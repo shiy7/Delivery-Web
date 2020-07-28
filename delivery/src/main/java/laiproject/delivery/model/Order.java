@@ -20,6 +20,8 @@ public class Order implements Serializable{
     private String deliverAddress;
     @Column(name = "receiverAddress")
     private String receiverAddress;
+    @Column(name = "senderName")
+    private String senderName;
     @Column(name = "receiverName")
     private String receiverName;
     @Column(name = "packageWeight")
@@ -47,6 +49,14 @@ public class Order implements Serializable{
     private String estimateDistance;
     @Column(name = "DeliverRobotLocation")
     private String DeliverRobotLocation;
+
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
 
     public String getDeliverRobotLocation() {
         return DeliverRobotLocation;
