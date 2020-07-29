@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import {Button, Form, Input, message, Popconfirm} from "antd";
 
 class Profile extends Component {
-    goShipping = () => {
-        // this.props.handlePrevButton();
-        this.props.history.push(`/processing`);
-    }
+
 
     constructor() {
         super();
@@ -47,6 +44,7 @@ class Profile extends Component {
     }
 
     save = () => {
+        const oldID = this.state.id;
         const newID = document.getElementById("userID").value;
         this.setState(prevState => ({
             id: newID,
@@ -59,7 +57,29 @@ class Profile extends Component {
         })
 
         // save new ID to DB
-
+        const url = '/user/'+oldID;
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': 'http://localhost:3000',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                    username: newID
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                    console.log(data);
+                    // this.props.handleLoginSucceed(values.username);
+                    // message.success('Update Succeed!');
+                }
+            )
+            .catch((err) => {
+                console.error(err);
+                message.error('Fail to update');
+            });
     }
 
     onChange = (e) => {
@@ -99,6 +119,29 @@ class Profile extends Component {
         }))
 
         // to do save new PW into DB
+        const url = '/user/'+this.state.id;
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': 'http://localhost:3000',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: document.getElementById("password").value
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                    console.log(data);
+                    // this.props.handleLoginSucceed(values.username);
+                    // message.success('Update Succeed!');
+                }
+            )
+            .catch((err) => {
+                console.error(err);
+                message.error('Fail to update');
+            });
 
     }
 
@@ -108,7 +151,7 @@ class Profile extends Component {
     };
 
     compareToCurPassword = (rule, value, callback) => {
-        const url = '/history?username='.concat(this.state.id)
+        const url = '/user='.concat(this.state.id)
         fetch(url, {
             method: 'GET',
             headers: {
@@ -172,7 +215,7 @@ class Profile extends Component {
             <div>
                 {/*{this.props.match.params.id}*/}
                 {/*{console.log(this.props)}*/}
-                <Button onClick={this.goShipping}>Ship my package</Button>
+
 
                 <div>
                     <h1>Profile</h1>
@@ -211,6 +254,7 @@ class Profile extends Component {
                         {this.state.editable2 ?
                             <Form.Item label="Original Password">
                                 <Input
+                                    id="password"
                                     value={this.state.password}
                                     style={{
                                         pointerEvents: this.state.pointerEvent2,

@@ -15,6 +15,8 @@ state = {
     }
 
     render() {
+        console.log(this.props.info)
+
         const {deliverAddress,packageWeight,receiverName,orderNumber,receiverAddress,senderPhone,receiverPhone,packageSize,
             emergency,deliverMethod,estimateDistance,estimateTime,cardNo,money,shipmentStatus,deliverRobotLocation} = this.props.info;
 

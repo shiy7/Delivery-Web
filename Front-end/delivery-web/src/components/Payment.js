@@ -97,7 +97,8 @@ class Payment extends Component {
         const trackingNum = this.generateTrackingNumber(12);
         localStorage.setItem("tracking",trackingNum);
         // this.setState({tracking: trackingNum});
-        fetch(`/order?username=tim`, {
+        const url = '/order?username='+this.state.id;
+        fetch(url, {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin': 'http://localhost:3000',

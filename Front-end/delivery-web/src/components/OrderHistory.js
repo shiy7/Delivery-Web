@@ -1,31 +1,98 @@
 import React, {Component} from 'react';
-import {Table} from 'antd'
-
+import {Button, Icon, message, Table} from 'antd'
 
 
 class OrderHistory extends Component {
 
+    state = {
+        id: localStorage.getItem("userID"),
+        isLoading: true,
+        orders: ''
+    }
+
+    componentDidMount() {
+        const url = '/history?username='+this.state.id;
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': 'http://localhost:3000',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                    console.log(data);
+                    this.setState({
+                        idLoading:false,
+                        orders: data
+                    });
+                }
+            )
+            .catch((err) => {
+                console.error(err);
+                message.error('NO Orders');
+            });
+
+    }
+
+    goShipping = () => {
+        // this.props.handlePrevButton();
+        this.props.history.push(`/processing`);
+    }
+
     render() {
+
+        const data = [];
+        for (let i = 0; i < this.state.orders.length; i++){
+            const order = this.state.orders[i];
+            data.push({
+                key: i,
+                number:order.orderNumber,
+                sender:order.senderName,
+                receiver: order.receiverName,
+                date:order.orderTimestamp.substring(5,7)+'/'+order.orderTimestamp.substring(8,10)+'/'+order.orderTimestamp.substring(0,4),
+            })
+        }
+
         const columns = [
             {
                 title: 'Order Number',
                 dataIndex: 'number',
-                width: 150,
+                width: 200,
             },
             {
                 title: 'Date',
                 dataIndex: 'date',
-                width: 150,
+                width: 200,
             },
             {
-                title: '',
-                dataIndex: 'address',
+                title: 'Sender',
+                dataIndex: 'sender',
+            },
+            {
+                title: 'Receiver',
+                dataIndex: 'receiver',
+            },
+            {
+                title: 'Tracking',
+                key: 'tracking',
+                render: (text, record) =>
+                    <a href={"http://localhost:3000/tracking/".concat(record.number)}>Tracking</a>
             },
         ];
 
+
+
         return (
             <div>
-                test2
+                <div align='right'>
+                    <Button onClick={this.goShipping}
+                            style={{textAlign:"right", marginBottom:'20px'}}
+                    >Ship my package</Button>
+                </div>
+
+                <Table columns={columns} dataSource={data} />
             </div>
         );
     }

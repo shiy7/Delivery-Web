@@ -7,7 +7,8 @@ const {Search} = Input;
 
 class Tracking extends Component {
     state = {
-        information: ''
+        information: '',
+        loadMap:''
     }
 
     componentDidMount() {
@@ -44,7 +45,13 @@ class Tracking extends Component {
         })
             .then(response => response.json())
             .then(data => {
-                    this.setState({information: data});
+                    this.setState({information: data}, () => {
+                        if (this.state.information.shipmentStatus === 'pick up' || this.state.information.shipmentStatus === 'delivering'){
+                            this.setState({loadMap:true})
+                        } else {
+                            this.setState({loadMap:false})
+                        }
+                    });
 
                 }
             )
@@ -58,7 +65,6 @@ class Tracking extends Component {
 
 
     render() {
-        console.log(this.state)
         return (
             <div>
                 <div className="input">
@@ -72,20 +78,20 @@ class Tracking extends Component {
                     />
                 </div>
                 <div className="detail">
-                    {/*<Row>*/}
                     <OrderDetail info={this.state.information}/>
-                    {/*<Col span={8}>*/}
-                    {/*    <OrderDetail info = {this.state.trackingNumber}/>*/}
-                    {/*</Col>*/}
-                    {/*<Col span={16}>*/}
-                    {/*<TrackingMap*/}
-                    {/*    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0HMPqMB0O_aqrBGCKhSQ99fKeDrbRtN8&v=3.exp&libraries=geometry,drawing,places"*/}
-                    {/*    loadingElement={<div style={{ height: `100%` }} />}*/}
-                    {/*    containerElement={<div style={{ height: `600px` }} />}*/}
-                    {/*    mapElement={<div style={{ height: `100%` }} />}*/}
-                    {/*/>*/}
-                    {/*</Col>*/}
-                    {/*</Row>*/}
+                </div>
+                <div className="trackMap">
+                    {this.state.loadMap ?
+                        <TrackingMap
+                            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0HMPqMB0O_aqrBGCKhSQ99fKeDrbRtN8&v=3.exp&libraries=geometry,drawing,places"
+                            loadingElement={<div style={{ height: `100%` }} />}
+                            containerElement={<div style={{ height: `600px`, width:'60%', textAlign:"center",margin:"auto"}} />}
+                            mapElement={<div style={{ height: `100%` }} />}
+                            information={this.state.information}
+                        />
+                         : null
+                    }
+
                 </div>
             </div>
         );

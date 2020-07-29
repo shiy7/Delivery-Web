@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button} from "antd";
+import {Button, message} from "antd";
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import Profile from "./Profile"
 import OrderHistory from "./OrderHistory"
@@ -11,6 +11,7 @@ const { SubMenu } = Menu;
 class DashBoard extends Component {
     state = {
         collapsed: false,
+        orders:'',
     };
 
     onCollapse = collapsed => {
@@ -18,19 +19,6 @@ class DashBoard extends Component {
         this.setState({ collapsed });
     };
 
-    // componentDidMount() {
-    //     if(localStorage.getItem("userID") == null){
-    //         this.props.history.push(`/login`);
-    //     }
-    // }
-
-    // goToShipping = () => {
-    // // console.log(1);
-    //     // return <NavLink  to="/shipping">ship</NavLink>;
-    //     console.log(this.props.history);
-    //     this.props.history.push(`/shipping`);
-    //     // this.props.user = "abc123";
-    // }
 
     render() {
         // console.log(localStorage.getItem("userID"));
