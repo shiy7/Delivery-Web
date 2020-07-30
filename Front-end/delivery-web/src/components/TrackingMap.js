@@ -48,18 +48,19 @@ class NormalMap extends Component {
         });
     }
 
-    // codeAddress = (address) => {
-    //     const geocoder = new window.google.maps.Geocoder();
-    //     geocoder.geocode({
-    //         address: address
-    //     }, (results, status) =>{
-    //         if (status === "OK") {
-    //             this.setState({geoPosition:results[0].geometry.location })
-    //         } else {
-    //             alert('Geocode was not successful for the following reason: ' + status);
-    //         }
-    //     });
-    // }
+
+    codeAddress = (address) => {
+        const geocoder = new window.google.maps.Geocoder();
+        geocoder.geocode({
+            address: address
+        }, (results, status) =>{
+            if (status === "OK") {
+                this.setState({geoPosition:results[0].geometry.location })
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
 
     render() {
         // const geoUrl = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD0HMPqMB0O_aqrBGCKhSQ99fKeDrbRtN8&address='
@@ -71,7 +72,6 @@ class NormalMap extends Component {
                 defaultCenter={{lat:37.77493, lng: -122.419415}}
             >
                 {this.state.directions && <DirectionsRenderer directions={this.state.directions} markerArray={null}/>}
-                {/*{this.codeAddress(this.state.origin)}*/}
                 {/*<Marker*/}
                 {/*    name={'Robot Position'}*/}
                 {/*    position={{lat:37.758271,lng:-122.428361}}*/}
