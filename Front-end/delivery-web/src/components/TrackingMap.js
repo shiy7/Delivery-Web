@@ -7,7 +7,7 @@ import {
     Marker,
     InfoWindow
 } from "react-google-maps";
-import Robot from '../assets/images/robot.png';
+import Robot from '../assets/images/robotMap.png';
 import Sender from '../assets/images/sender.png';
 import Receiver from '../assets/images/receiver.png'
 
