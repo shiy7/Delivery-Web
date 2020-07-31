@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Input, Row, Col, Descriptions, message} from 'antd';
 import TrackingMap from "./TrackingMap";
+import DroneMap from "./DroneMap";
 import OrderDetail from "./OrderDetail"
 
 const {Search} = Input;
@@ -8,7 +9,8 @@ const {Search} = Input;
 class Tracking extends Component {
     state = {
         information: '',
-        loadMap:''
+        loadMap:'',
+        robot: true
     }
 
     componentDidMount() {
@@ -51,6 +53,9 @@ class Tracking extends Component {
                         } else {
                             this.setState({loadMap:false})
                         }
+                        if (this.state.information.deliverMethod === 'drone'){
+                            this.setState({robot: false})
+                        }
                     });
 
                 }
@@ -82,13 +87,22 @@ class Tracking extends Component {
                 </div>
                 <div className="trackMap">
                     {this.state.loadMap ?
-                        <TrackingMap
-                            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0HMPqMB0O_aqrBGCKhSQ99fKeDrbRtN8&v=3.exp&libraries=geometry,drawing,places"
-                            loadingElement={<div style={{ height: `100%` }} />}
-                            containerElement={<div style={{ height: `600px`, width:'60%', textAlign:"center",margin:"auto"}} />}
-                            mapElement={<div style={{ height: `100%` }} />}
-                            information={this.state.information}
-                        />
+                        this.state.robot ?
+                            <TrackingMap
+                                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0HMPqMB0O_aqrBGCKhSQ99fKeDrbRtN8&v=3.exp&libraries=geometry,drawing,places"
+                                loadingElement={<div style={{ height: `100%` }} />}
+                                containerElement={<div style={{ height: `600px`, width:'60%', textAlign:"center",margin:"auto"}} />}
+                                mapElement={<div style={{ height: `100%` }} />}
+                                information={this.state.information}
+
+                            /> :
+                            <DroneMap
+                                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0HMPqMB0O_aqrBGCKhSQ99fKeDrbRtN8&v=3.exp&libraries=geometry,drawing,places"
+                                loadingElement={<div style={{ height: `100%` }} />}
+                                containerElement={<div style={{ height: `600px`, width:'60%', textAlign:"center",margin:"auto"}} />}
+                                mapElement={<div style={{ height: `100%` }} />}
+                                information={this.state.information}
+                            />
                          : null
                     }
 
