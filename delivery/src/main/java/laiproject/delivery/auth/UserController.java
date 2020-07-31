@@ -3,6 +3,7 @@ package laiproject.delivery.auth;
 import laiproject.delivery.Service.SecurityService;
 import laiproject.delivery.Service.UserService;
 import laiproject.delivery.model.User;
+import laiproject.delivery.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,9 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+
+    @Autowired
+    private UserRepository userRepository;
 
 
     @PostMapping("/registration")
@@ -48,6 +52,15 @@ public class UserController {
     @GetMapping({"/", "/welcome"})
     public String welcome() {
         return "Welcome! This is the main page";
+    }
+
+    @PostMapping({"/user/{userName}"})
+    public ResponseEntity updateUser(@RequestBody User newUser, @PathVariable String userName) {
+        User user = userRepository.findByUsername(userName);
+        user.setPassword(newUser.getPassword());
+        user.setUsername(newUser.getUsername());
+        userService.save(user);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 
