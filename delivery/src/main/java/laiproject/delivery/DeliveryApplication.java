@@ -222,48 +222,28 @@ DeliveryApplication {
                 + "weight " + params.get("weight");
     }
 
-    @GetMapping("/geo")
-    public double geocoding(){
-        String address1 = "Smitten Ice Cream, 904 Valencia St, San Francisco, CA 94110";
-        String address2 = "Golden Fire Hydrant, 3899 20th St, San Francisco, CA 94114";
+    @PostMapping (value = "/geo",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String geocoding(@RequestBody Map params){
+        String senderAddress = params.get("senderAddress").toString();
+        String receiverAddress = params.get("receiverAddress").toString();
+        String robotAddress = params.get("robotAddress").toString();
+
 
         String API_KEY = "AIzaSyDeCLN3mz6w9LmFUsHwxbGhuBeIMdka8rg";
         StringBuilder sb = new StringBuilder("");
-        double[] cor1 = getGeolocation(address1,API_KEY);
-        double[] cor2 = getGeolocation(address2,API_KEY);
-        sb.append(cor1[0]);
-        sb.append(" ");
-        sb.append(cor1[1]);
-        sb.append(" ");
-        sb.append(cor2[0]);
-        sb.append(" ");
-        sb.append(cor2[1]);
+        double[] senderCord = getGeolocation(senderAddress,API_KEY);
+        double[] receiverCord = getGeolocation(receiverAddress,API_KEY);
+        double[] robotCord = getGeolocation(robotAddress,API_KEY);
 
-        return calculateDroneDistance(address1,address2,API_KEY);
-//        OkHttpClient client = new OkHttpClient();
-//        String url="https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&key="+ API_KEY;
-//        try {
-//            Request request = new Request.Builder()
-//                    .url(url)
-//                    .build();
-//            Response response = client.newCall(request).execute();
-//            String res = response.body().string();
-//            JSONParser parser = new JSONParser();
-//            Object obj = parser.parse(res);
-//            JSONObject jsonobj=(JSONObject)obj;
-//            JSONArray results = (JSONArray)jsonobj.get("results");
-//            JSONObject body = (JSONObject)results.get(0);
-//            JSONObject geometry = (JSONObject)body.get("geometry");
-//            System.out.println(geometry);
-//            JSONObject location = (JSONObject) geometry.get("location");
-//            double lat = (double) location.get("lat");
-//            double lng = (double) location.get("lng");
-//            directDistance()
-//            return String.valueOf(lat) + String.valueOf(lng) ;
-//        }catch (Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//        return null;
+
+        JsonObject jsonObj = new JsonObject();
+        jsonObj.addProperty("senderLat",senderCord[0]);
+        jsonObj.addProperty("senderLng",senderCord[1]);
+        jsonObj.addProperty("receiverLat",receiverCord[0]);
+        jsonObj.addProperty("receiverLng",receiverCord[1]);
+        jsonObj.addProperty("robotLat",robotCord[0]);
+        jsonObj.addProperty("robotLng",robotCord[1]);
+        return jsonObj.toString();
     }
 
 
