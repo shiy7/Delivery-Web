@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import {Button, message} from "antd";
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import Profile from "./Profile"
 import OrderHistory from "./OrderHistory"
 import {Route, Redirect, Switch, withRouter} from "react-router-dom"
 import Link from "react-router-dom/Link"
-const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+const { Content, Sider } = Layout;
 
 class DashBoard extends Component {
     state = {
@@ -30,8 +28,8 @@ class DashBoard extends Component {
                 <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                     <div className="logo" />
                     <Menu theme="dark"
-                          defaultSelectedKeys={[path]}
-                          mode="inline" 
+                          selectedKeys={[path]}
+                          mode="inline"
                     >
                         <Menu.Item key="/dashboard/profile">
                             <Link to='/dashboard/profile'>
