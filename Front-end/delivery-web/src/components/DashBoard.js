@@ -22,19 +22,24 @@ class DashBoard extends Component {
 
     render() {
         // console.log(localStorage.getItem("userID"));
+        const path = this.props.location.pathname;
+
         return (
             localStorage.getItem("userID") !== null ?
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                     <div className="logo" />
-                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                        <Menu.Item key="1">
+                    <Menu theme="dark"
+                          defaultSelectedKeys={[path]}
+                          mode="inline" 
+                    >
+                        <Menu.Item key="/dashboard/profile">
                             <Link to='/dashboard/profile'>
                                 <Icon type="user" />
                                 <span>Profile</span>
                             </Link>
                         </Menu.Item>
-                        <Menu.Item key="2">
+                        <Menu.Item key="/dashboard/orders">
                             <Link to='/dashboard/orders'>
                                 <Icon type="history" />
                                 <span>Order History</span>
