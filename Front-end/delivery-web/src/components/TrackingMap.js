@@ -81,7 +81,7 @@ class NormalMap extends Component {
                 {/*        scaledSize: new window.google.maps.Size(26, 41),*/}
                 {/*    }}*/}
                 {/*/>*/}
-                {/*{this.codeAddress(this.state.halfWay)}*/}
+                {/*{this.codeAddress(this.state.origin)}*/}
                 {/*<Marker*/}
                 {/*    name={'Sender'}*/}
                 {/*    position={{lat:37.757979,lng:-122.427949}}*/}

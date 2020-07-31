@@ -17,7 +17,7 @@ state = {
     render() {
         console.log(this.props.info)
 
-        const {deliverAddress,packageWeight,receiverName,orderNumber,receiverAddress,senderPhone,receiverPhone,packageSize,
+        const {senderName, deliverAddress,packageWeight,receiverName,orderNumber,receiverAddress,senderPhone,receiverPhone,packageSize,
             emergency,deliverMethod,estimateDistance,estimateTime,cardNo,money,shipmentStatus,deliverRobotLocation} = this.props.info;
 
         return (
@@ -31,7 +31,7 @@ state = {
 
 
                 <Descriptions.Item label="Sender Name" >
-                    {this.state.user_name}
+                    {senderName}
                 </Descriptions.Item>
 
                 <Descriptions.Item label="Sender Address">

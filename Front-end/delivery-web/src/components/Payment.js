@@ -97,7 +97,7 @@ class Payment extends Component {
         const trackingNum = this.generateTrackingNumber(12);
         localStorage.setItem("tracking",trackingNum);
         // this.setState({tracking: trackingNum});
-        const url = '/order?username='+this.state.id;
+        const url = '/order?username='+localStorage.getItem("userID");
         fetch(url, {
             method: 'POST',
             headers: {
@@ -106,7 +106,7 @@ class Payment extends Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                // username: localStorage.getItem("user_name"),
+                senderName: localStorage.getItem("user_name"),
                 orderNumber:trackingNum,
                 senderPhone: localStorage.getItem("user_phone"),
                 deliverAddress: localStorage.getItem("user_address"),
