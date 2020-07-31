@@ -31,7 +31,7 @@ class OrderHistory extends Component {
             )
             .catch((err) => {
                 console.error(err);
-                message.error('NO Orders');
+                // message.error('NO Orders');
             });
 
     }

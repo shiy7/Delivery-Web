@@ -9,6 +9,7 @@ class Profile extends Component {
         this.state = {
             id: localStorage.getItem("userID"),
             password: '*******',
+            newPassword:'',
             pointerEvent: 'none',
             border: '0px',
             editable: 'true',
@@ -28,6 +29,7 @@ class Profile extends Component {
             pointerEvent: 'auto',
             border: '1px solid #ced4da',
             disable: 'disabled',
+            disable2: 'disabled',
             editable: !prevState.editable
         }))
     }
@@ -38,6 +40,7 @@ class Profile extends Component {
             id: tmp,
             editable: !prevState.editable,
             disable: ' ',
+            disable2: ' ',
             pointerEvent: 'none',
             border: '0px',
         }))
@@ -50,14 +53,17 @@ class Profile extends Component {
             id: newID,
             editable: !prevState.editable,
             disable: ' ',
+            disable2: ' ',
             pointerEvent: 'none',
             border: '0px',
         }), () => {
-            localStorage.setItem("userID", this.state.id)
+            // localStorage.setItem("userID", this.state.id)
         })
 
         // save new ID to DB
-        const url = '/user/'+oldID;
+        console.log(oldID)
+        console.log(newID)
+        const url = '/updateID/'+localStorage.getItem("userID");
         fetch(url, {
             method: 'POST',
             headers: {
@@ -69,16 +75,22 @@ class Profile extends Component {
                     username: newID
             })
         })
-            .then(response => response.json())
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                }
+                throw new Error(response.stateText);
+            })
             .then(data => {
                     console.log(data);
+                    localStorage.setItem("userID", newID);
                     // this.props.handleLoginSucceed(values.username);
-                    // message.success('Update Succeed!');
+                    message.success('Update username success!');
                 }
             )
             .catch((err) => {
                 console.error(err);
-                message.error('Fail to update');
+                message.error('Fail to update username');
             });
     }
 
@@ -96,6 +108,7 @@ class Profile extends Component {
             pointerEvent2: 'auto',
             border2: '1px solid #ced4da',
             disable2: 'disabled',
+            disable: 'disabled',
             editable2: !prevState.editable,
             changePW: !prevState.changePW,
         }))
@@ -106,42 +119,83 @@ class Profile extends Component {
             password: '*******',
             editable2: !prevState.editable2,
             disable2: ' ',
+            disable: ' ',
             pointerEvent2: 'none',
             border2: '0px',
+
+
         }))
     }
 
-    save2 = () => {
-        this.setState(prevState => ({
-            password: '*******',
-            editable2: !prevState.editable,
-            disable2: ' ',
-        }))
+    save2 = (e) => {
 
-        // to do save new PW into DB
-        const url = '/user/'+this.state.id;
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Access-Control-Allow-Origin': 'http://localhost:3000',
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: document.getElementById("password").value
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                    console.log(data);
-                    // this.props.handleLoginSucceed(values.username);
-                    // message.success('Update Succeed!');
-                }
-            )
-            .catch((err) => {
-                console.error(err);
-                message.error('Fail to update');
-            });
+        e.preventDefault();
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+
+                // compare password with original password
+                let stageSuccess = false;
+                let headers = new Headers();
+                // console.log(oldPwd);
+                headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem("userID") + ":" + values.oldPassword));
+                fetch(`/login`, {
+                    method: `GET`,
+                    headers:headers,
+                })
+                    .then(response => {
+                        // console.log(response);
+                        if (response.ok) {
+                            stageSuccess = true;
+                            return response.text();
+                        }
+                        throw new Error(response.stateText);
+                    })
+                    // .then(data => data.json())
+                    .then(data => {
+                        console.log(data);
+                        const url = '/updatePassword/' + localStorage.getItem("userID");
+                        fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Access-Control-Allow-Origin': 'http://localhost:3000',
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                password: values.newPassword
+                            })
+                        })
+                            .then(response => response.text())
+                            .then(data => {
+                                    console.log(data);
+                                    // this.props.handleLoginSucceed(values.username);
+                                this.setState(prevState => ({
+                                    password: '*******',
+                                    editable2: !prevState.editable2,
+                                    disable2: ' ',
+                                    disable: ' ',
+                                    pointerEvent2: 'none',
+                                    border2: '0px',
+                                }))
+                                    message.success('Update password success!');
+                                }
+                            )
+                            .catch((err) => {
+                                console.error(err);
+                                message.error('Fail to update password');
+                            });
+                        // this.props.history.push(`/dashboard`);
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        message.error('Password not match!');
+                    });
+                console.log(stageSuccess);
+
+
+            }
+        });
+
 
     }
 
@@ -149,38 +203,15 @@ class Profile extends Component {
         const {value} = e.target;
         this.setState({confirmDirty: this.state.confirmDirty || !!value});
     };
+    comparePassword(){
 
-    compareToCurPassword = (rule, value, callback) => {
-        const url = '/user='.concat(this.state.id)
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                'Access-Control-Allow-Origin': 'http://localhost:3000',
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                    console.log(data);
-                    const oldPW = data.password;
-                    if (value && value !== oldPW) {
-                        callback('Your original password is wrong');
-                    } else {
-                        callback();
-                    }
-                }
-            )
-            .catch((err) => {
-                console.error(err);
-                message.error('Password is wrong');
-            });
 
     }
 
+
     compareToFirstPassword = (rule, value, callback) => {
         const {form} = this.props;
-        if (value && value !== form.getFieldValue('new password')) {
+        if (value && value !== form.getFieldValue('newPassword')) {
             callback('Two passwords that you enter is inconsistent!');
         } else {
             callback();
@@ -219,7 +250,7 @@ class Profile extends Component {
 
                 <div>
                     <h1>Profile</h1>
-                    <Form
+                    <Form onSubmit = {this.save2}
                         {...formItemLayout}
                     >
                         <Form.Item label="user ID">
@@ -267,16 +298,16 @@ class Profile extends Component {
                                     Edit
                                 </Button>
                             </Form.Item> :
-                            <Form.Item label="Original Password" hasFeedback>
-                                {getFieldDecorator('old password', {
+                            <Form.Item label="Original Password">
+                                {getFieldDecorator('oldPassword', {
                                     rules: [
                                         {
                                             required: true,
                                             message: 'Please input your original password!',
                                         },
-                                        {
-                                            validator: this.compareToCurPassword(),
-                                        },
+                                        // {
+                                        //     validator: this.compareToCurPassword(),
+                                        // },
                                     ],
                                 })(<Input.Password style={{width: 'auto', float: 'left',}}/>)}
                                 <span>
@@ -296,17 +327,17 @@ class Profile extends Component {
                             this.state.editable2 ? null :
                                 <div>
                                     <Form.Item label="New Password" hasFeedback>
-                                        {getFieldDecorator('new password', {
+                                        {getFieldDecorator('newPassword', {
                                             rules: [
                                                 {
                                                     required: true,
                                                     message: 'Please input your password!',
                                                 },
-                                                {
-                                                    validator: this.validateToNextPassword,
-                                                },
+                                                // {
+                                                //     validator: this.validateToNextPassword,
+                                                // },
                                             ],
-                                        })(<Input.Password style={{width: 'auto', float: 'left',}}/>)}
+                                        })(<Input.Password id="newPassword"style={{width: 'auto', float: 'left',}}/>)}
                                     </Form.Item>
                                     <Form.Item label="Confirm New Password" hasFeedback>
                                         {getFieldDecorator('confirm', {

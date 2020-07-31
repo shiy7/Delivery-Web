@@ -63,5 +63,21 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    @PostMapping({"/updateID/{userName}"})
+    public ResponseEntity updateUserID(@RequestBody User newUser, @PathVariable String userName) {
+        User user = userRepository.findByUsername(userName);
+        user.setUsername(newUser.getUsername());
+        userService.save(user);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping({"/updatePassword/{userName}"})
+    public ResponseEntity updateUserPassWd(@RequestBody User newUser, @PathVariable String userName) {
+        User user = userRepository.findByUsername(userName);
+        user.setPassword(newUser.getPassword());
+        userService.save(user);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
 
 }

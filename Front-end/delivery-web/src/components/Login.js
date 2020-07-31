@@ -64,14 +64,6 @@ class NormalLoginForm extends Component {
                 fetch(`/login`, {
                     method: `GET`,
                     headers:headers,
-                    // headers: {
-                    //     'Access-Control-Allow-Origin': 'http://localhost:3000',
-                    //     'Authorization':''
-                    // },
-                    // body: JSON.stringify({
-                    //     username: values.username,
-                    //     password: values.password,
-                    // }),
                 })
                     .then(response => {
                         // console.log(response);
