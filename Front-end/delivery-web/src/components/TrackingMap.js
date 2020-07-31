@@ -10,6 +10,7 @@ import {
 import Robot from '../assets/images/robotMap.png';
 import Sender from '../assets/images/sender.png';
 import Receiver from '../assets/images/receiver.png'
+import {message} from "antd"
 
 
 class NormalMap extends Component {
@@ -21,11 +22,14 @@ class NormalMap extends Component {
         halfWay:this.props.information.deliverAddress,
         status: this.props.information.shipmentStatus,
         method: this.props.information.deliverMethod,
-        geoPosition:[],
         isOpen:false,
+        mapData: false,
+        geolocation:''
     }
 
     componentDidMount() {
+        this.fetchData();
+
         const DirectionsService = new window.google.maps.DirectionsService();
         const waypts = []
 
@@ -54,19 +58,37 @@ class NormalMap extends Component {
         });
     }
 
-
-    // codeAddress = (address) => {
-    //     const geocoder = new window.google.maps.Geocoder();
-    //     geocoder.geocode({
-    //         address: address
-    //     }, (results, status) =>{
-    //         if (status === "OK") {
-    //             this.setState({geoPosition:results[0].geometry.location })
-    //         } else {
-    //             alert('Geocode was not successful for the following reason: ' + status);
-    //         }
-    //     });
-    // }
+    fetchData = () => {
+        const url = '/geo'
+        fetch(url,{
+            method: `POST`,
+            headers: {
+                'Access-Control-Allow-Origin': 'http://localhost:3000',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                senderAddress:this.state.halfWay,
+                receiverAddress: this.state.destination,
+                robotAddress: this.state.origin
+            }),
+        })
+            .then(response => {
+                // console.log(response);
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error(response.statusText);
+            })
+            .then((data) => {
+                console.log(data.robotLat);
+                this.setState({geoLocation:data, mapData:true});
+            })
+            .catch((err) => {
+                console.error(err);
+                message.error('GeoLocation failed.');
+            });
+    }
 
     // to control if to show infoWindow or not
     handleToggle = () => {
@@ -76,55 +98,62 @@ class NormalMap extends Component {
     }
 
     render() {
-        // const geoUrl = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD0HMPqMB0O_aqrBGCKhSQ99fKeDrbRtN8&address='
-        // const geoOrigin =
-
+        // console.log("==> ",this.state.geoLocation.senderLat)
         return (
-            <GoogleMap
-                defaultZoom={15}
-                defaultCenter={{lat:37.77493, lng: -122.419415}}
+            <div>
+                {
+                    this.state.mapData ?
+                        <GoogleMap
+                            defaultZoom={15}
+                            defaultCenter={{lat: 37.77493, lng: -122.419415}}
 
-            >
-                {this.state.directions &&
-                <DirectionsRenderer directions={this.state.directions}
-                                    options={{suppressMarkers: true}}
-                />}
-                <Marker
-                    name={'Robot Position'}
-                    position={{lat:37.758271,lng:-122.428361}}
-                    icon = {{
-                        url: Robot,
-                        scaledSize: new window.google.maps.Size(39, 60),
-                    }}
-                    onClick={this.handleToggle}
-                >
-                    {this.state.isOpen ? (
-                        <InfoWindow>
-                            <div>
-                                {this.state.origin}
-                            </div>
-                        </InfoWindow>
-                    ) : null}
-                </Marker>
+                        >
+                            {this.state.directions &&
+                            <DirectionsRenderer directions={this.state.directions}
+                                                options={{suppressMarkers: true}}
+                            />}
+                            <Marker
+                                name={'Robot Position'}
+                                position={{lat: this.state.geoLocation.robotLat, lng: this.state.geoLocation.robotLng}}
+                                icon={{
+                                    url: Robot,
+                                    scaledSize: new window.google.maps.Size(39, 60),
+                                }}
+                                onClick={this.handleToggle}
+                            >
+                                {this.state.isOpen ? (
+                                    <InfoWindow>
+                                        <div>
+                                            {this.state.origin}
+                                        </div>
+                                    </InfoWindow>
+                                ) : null}
+                            </Marker>
 
-                {this.state.sender ? <Marker
-                    name={'Sender'}
-                    position={{lat:37.757979,lng:-122.427949}}
-                    icon = {{
-                        url: Sender,
-                        scaledSize: new window.google.maps.Size(39, 60),
-                    }}
-                /> : null}
+                            {this.state.sender ? <Marker
+                                name={'Sender'}
+                                position={{lat: this.state.geoLocation.senderLat, lng: this.state.geoLocation.senderLng}}
+                                icon={{
+                                    url: Sender,
+                                    scaledSize: new window.google.maps.Size(39, 60),
+                                }}
+                            /> : null}
 
-                <Marker
-                    name={'Receiver'}
-                    position={{lat:37.758563,lng:-122.418692}}
-                    icon = {{
-                        url: Receiver,
-                        scaledSize: new window.google.maps.Size(39, 60),
-                    }}
-                />
-            </GoogleMap>
+                            <Marker
+                                name={'Receiver'}
+                                position={{
+                                    lat: this.state.geoLocation.receiverLat,
+                                    lng: this.state.geoLocation.receiverLng
+                                }}
+                                icon={{
+                                    url: Receiver,
+                                    scaledSize: new window.google.maps.Size(39, 60),
+                                }}
+                            />
+                        </GoogleMap> : null
+                }
+            </div>
+
         );
     }
 }
