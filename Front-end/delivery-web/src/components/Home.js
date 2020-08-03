@@ -69,7 +69,7 @@ class Home extends Component {
                                         <h3>
                                             Dashboard
                                         </h3>
-                                       Go to processing page to start an oder.
+                                       Go to processing page to start an order.
                                         Check your order history.
 
                                     </div>
