@@ -1,3 +1,3 @@
-# laiOffer-FLGA
+# Delivery Web
 start the app using maven
 
