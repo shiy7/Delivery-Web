@@ -16,11 +16,11 @@ class RegistrationForm extends React.Component {
 
         const formItemLayout = {
             labelCol: {
-                xs: { span: 24 },
+                xs: { span: 12 },
                 sm: { span: 8 },
             },
             wrapperCol: {
-                xs: { span: 24 },
+                xs: { span: 12 },
                 sm: { span: 16 },
             },
         };
@@ -46,6 +46,7 @@ class RegistrationForm extends React.Component {
             </div>
             <Form  {...formItemLayout}
                    onSubmit={this.handleSubmit}
+                   className ="register"
             >
                 <Form.Item label="Username">
                     {getFieldDecorator('username', {
