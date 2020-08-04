@@ -52,9 +52,10 @@ class RecommendForm extends Component {
 
 
     componentDidMount() {
-
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const backendUrl = "https://deliver-web-back-end.herokuapp.com";
         const url = '/recommend'
-        fetch(url, {
+        fetch(proxyurl+backendUrl+url, {
             method: 'POST',
             body: JSON.stringify({
 

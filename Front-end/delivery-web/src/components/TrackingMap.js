@@ -59,8 +59,10 @@ class NormalMap extends Component {
     }
 
     fetchData = () => {
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const backendUrl = "https://deliver-web-back-end.herokuapp.com";
         const url = '/geo'
-        fetch(url,{
+        fetch(proxyurl+backendUrl+url,{
             method: `POST`,
             headers: {
                 'Access-Control-Allow-Origin': 'http://localhost:3000',

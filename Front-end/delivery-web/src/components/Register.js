@@ -135,9 +135,11 @@ class RegistrationForm extends React.Component {
 
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                // console.log('Received values of form: ', values);
+                const proxyurl = "https://cors-anywhere.herokuapp.com/";
+                const backendUrl = "https://deliver-web-back-end.herokuapp.com";
                 const url = '/registration'
-                fetch(url,{
+                fetch(proxyurl+backendUrl+url,{
                     method: `POST`,
                     headers: {
                                 'Access-Control-Allow-Origin': 'http://localhost:3000',

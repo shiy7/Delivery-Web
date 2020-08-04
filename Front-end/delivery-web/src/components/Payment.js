@@ -97,8 +97,10 @@ class Payment extends Component {
         const trackingNum = this.generateTrackingNumber(12);
         localStorage.setItem("tracking",trackingNum);
         // this.setState({tracking: trackingNum});
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const backendUrl = "https://deliver-web-back-end.herokuapp.com";
         const url = '/order?username='+localStorage.getItem("userID");
-        fetch(url, {
+        fetch(proxyurl+backendUrl+url, {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin': 'http://localhost:3000',

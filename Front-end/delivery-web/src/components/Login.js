@@ -61,7 +61,10 @@ class NormalLoginForm extends Component {
                 let headers = new Headers();
                 headers.append('Authorization', 'Basic ' + btoa(values.username + ":" + values.password));
                 // console.log(btoa(values.username + ":" + values.password));
-                fetch(`/login`, {
+                const proxyurl = "https://cors-anywhere.herokuapp.com/";
+                const backendUrl = "https://deliver-web-back-end.herokuapp.com";
+                const url = '/login'
+                fetch(proxyurl+backendUrl+url, {
                     method: `GET`,
                     headers:headers,
                 })

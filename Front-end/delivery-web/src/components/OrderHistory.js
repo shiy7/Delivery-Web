@@ -11,8 +11,10 @@ class OrderHistory extends Component {
     }
 
     componentDidMount() {
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const backendUrl = "https://deliver-web-back-end.herokuapp.com";
         const url = '/history?username='+this.state.id;
-        fetch(url, {
+        fetch(proxyurl+backendUrl+url, {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': 'http://localhost:3000',
@@ -78,7 +80,7 @@ class OrderHistory extends Component {
                 title: 'Tracking',
                 key: 'tracking',
                 render: (text, record) =>
-                    <a href={"http://localhost:3000/tracking/".concat(record.number)}>Tracking</a>
+                    <a href={"https://delivery-web-front-end.herokuapp.com/tracking/".concat(record.number)}>Tracking</a>
             },
         ];
 

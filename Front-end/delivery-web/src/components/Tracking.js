@@ -33,14 +33,16 @@ class Tracking extends Component {
 
     fetchData() {
         const tracking = this.props.match.params.id;
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const backendUrl = "https://deliver-web-back-end.herokuapp.com";
         const url = '/order/'.concat(tracking)
         // trackingnumber.package_info.tracking_number = tracking;
 
-        console.log(url);
-        fetch(url, {
+        // console.log(url);
+        fetch(proxyurl+backendUrl+url, {
             method: 'GET',
             headers: {
-                'Access-Control-Allow-Origin': 'http://localhost:3000',
+                'Access-Control-Allow-Origin': '*',
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
