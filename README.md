@@ -1,3 +1,19 @@
 # Delivery Web
-start the app using maven
+Dispatch & Delivery Management Website
 
+The web is designed to use ground robots and drones to deliver the packages in downtown San Francisco, CA. 
+Drones/robots go to senders' addresses to pick up parcels and deliver them to a destination.
+
+## Base Feature:
+* A complete flow design from register, login, dashboard, and order
+* The system can provide a choice recommendation based on the package and delivery information
+path: less cost or less time
+* User can choose different delivery methods
+
+## Structure:
+Front end: react.js
+Back end: spring + maven
+Database: MySQL
+
+## Website Link:
+[https://delivery-web-front-end.herokuapp.com/home](https://delivery-web-front-end.herokuapp.com/home)
