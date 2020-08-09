@@ -1,7 +1,7 @@
 # Delivery Web
 Dispatch & Delivery Management Website
 
-The web is designed to use ground robots and drones to deliver the packages in downtown San Francisco, CA. 
+The web is designed to simulate that ground robots and drones deliver the packages in downtown San Francisco, CA. 
 Drones/robots go to senders' addresses to pick up parcels and deliver them to a destination.
 
 ## Base Feature:
