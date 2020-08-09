@@ -11,9 +11,9 @@ path: less cost or less time
 * User can choose different delivery methods
 
 ## Structure:
-Front end: react.js
-Back end: spring + maven
-Database: MySQL
+* Front end: react.js
+* Back end: spring + maven
+* Database: MySQL
 
 ## Website Link:
 [https://delivery-web-front-end.herokuapp.com/home](https://delivery-web-front-end.herokuapp.com/home)
